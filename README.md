@@ -4,7 +4,7 @@ a courtbot for salt lake county.
 
 ## Usage
 
-Request mock data from ______;
+Request mock data from https://raw.githubusercontent.com/s2t2/courtbot-slco/master/mocks/upcoming_hearings.json.
 
 ## Contributing
 
