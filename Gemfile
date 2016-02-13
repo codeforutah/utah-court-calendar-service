@@ -6,3 +6,4 @@ gem 'httparty'
 
 gem 'activerecord'
 gem 'pg'
+gem 'nokogiri'

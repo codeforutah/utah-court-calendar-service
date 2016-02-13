@@ -60,6 +60,12 @@ Extract Utah Counties.
 ruby script/extract_utah_counties.rb
 ````
 
+Extract Utah Courts.
+
+```` sh
+ruby script/extract_utah_courts.rb
+````
+
 Backup database.
 
 ```` sh

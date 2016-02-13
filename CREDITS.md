@@ -17,3 +17,8 @@
  + https://github.com/kuanb/atl_zoink/blob/master/rb/app/models.rb
  + https://github.com/PostgresApp/PostgresApp/issues/9
  + http://stackoverflow.com/a/35385839/670433
+ + https://www.utcourts.gov/cal/index.html
+ + https://www.utcourts.gov/epayments/
+ + https://pubapps.utcourts.gov/ePayments/EPayment.jsp
+ + https://www.utcourts.gov/howto/filing/non-public/
+ + http://ruby.bastardsbook.com/chapters/html-parsing/
