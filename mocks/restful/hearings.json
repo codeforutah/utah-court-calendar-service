@@ -1,20 +1,22 @@
 [
   {
+    "id":"a1a1a1a1",
     "starts_at":"1457596800000",
     "location_id":1,
-    "defendant_id":1,
-    "citation_ids":["abcde"],
+    "court_cases":["abcde"],
   },
   {
+    "id":"b2b2b2b2b2",
     "starts_at":"1457683200000",
     "location_id":1,
     "defendant_id":2,
-    "citation_ids":["fghijkl","mnopqrs"]
+    "court_cases":["fghijkl","mnopqrs"]
   },
   {
+    "id":"c3c3c3c3c3",
     "starts_at":"1457769600000",
     "location_id":2,
     "defendant_id":2,
-    "citation_ids":["fghijkl","mnopqrs"]
+    "court_cases":["fghijkl","mnopqrs"]
   }
 ]

@@ -1,0 +1,16 @@
+[
+  {
+    "id":1,
+    "court_id":"cccccc",
+    "full_name":"Molly Silver",
+    "phone":"(801) 325-2000",
+    "email":"mollysilver@lawfirm.com"
+  },
+  {
+    "id":2,
+    "court_id":"dddddd",
+    "full_name":"David Donald",
+    "phone":"(801) 325-2000",
+    "email":"daviddonald@utah.gov"
+  }
+]

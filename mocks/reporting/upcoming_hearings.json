@@ -1,0 +1,70 @@
+[
+  {
+    "starts_at":"1457596800000",
+    "location":{
+      "id":1,
+      "name":"Salt Lake County Justice Court",
+      "address":"2001 S State St #4200, Salt Lake City, UT 84190",
+      "phone":"(801) 468-3430",
+      "lat":"40.727393",
+      "lon":"-111.887351",
+      "room":{
+        "name":"2A",
+        "instructions":"enter through the metal detector, go up the stairs or elevator to the second floor, find the west hallway, and find the room number above the door."
+      }
+    },
+    "defendant":{
+      "id":1,
+      "cjs_id":"aaaaaaa",
+      "sheriff_id":1111111,
+      "full_name":"Karl Malone",
+      "phone":"(801) 325-2000"
+    },
+    "citation_ids":["abcde"],
+  },
+  {
+    "starts_at":"1457683200000",
+    "location":{
+      "id":1,
+      "name":"Salt Lake County Justice Court",
+      "address":"2001 S State St #4200, Salt Lake City, UT 84190",
+      "phone":"(801) 468-3430",
+      "lat":"40.727393",
+      "lon":"-111.887351",
+      "room":{
+        "name":"2A",
+        "instructions":"enter through the metal detector, go up the stairs or elevator to the second floor, find the west hallway, and find the room number above the door."
+      }
+    },
+    "defendant":{
+      "id":2,
+      "cjs_id":"bbbbbbb",
+      "sheriff_id":2222222,
+      "full_name":"John Stockton",
+      "phone":"(801) 325-2000"
+    },
+    "citation_ids":["fghijkl","mnopqrs"]
+  },
+  {
+    "starts_at":"1457769600000",
+    "location":{
+      "id":2,
+      "name":"Salt Lake County Probation Services",
+      "address":"145 1300 S #501, Salt Lake City, UT 84115",
+      "phone":"(385) 468-3500",
+      "lat":"40.742347",
+      "lon":"-111.887698",
+      "room":[
+        {"name":"116", "arrival_instructions":"enter the waiting room on the first floor, sign-in with the receptionist, and wait for your name to be called."},
+      ]
+    },
+    "defendant":{
+      "id":2,
+      "cjs_id":"bbbbbbb",
+      "sheriff_id":2222222,
+      "full_name":"John Stockton",
+      "phone":"(801) 325-2000"
+    },
+    "citation_ids":["fghijkl","mnopqrs"]
+  }
+]
