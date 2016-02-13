@@ -15,3 +15,5 @@
  + http://www2.census.gov/geo/docs/reference/codes/files/st49_ut_cou.txt
  + https://github.com/kuanb/atl_zoink/blob/master/rb/script/extract_transform_and_load.rb
  + https://github.com/kuanb/atl_zoink/blob/master/rb/app/models.rb
+ + https://github.com/PostgresApp/PostgresApp/issues/9
+ + http://stackoverflow.com/a/35385839/670433
