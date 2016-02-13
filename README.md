@@ -22,3 +22,16 @@ Clone the repository.
 ```` sh
 git clone git@github.com:s2t2/courtbot-slco.git
 ````
+
+Install package dependencies.
+
+```` sh
+cd courtbot-slco/
+bundle install
+````
+
+Extract Utah Counties.
+
+```` sh
+ruby script/extract_utah_counties.rb
+````
