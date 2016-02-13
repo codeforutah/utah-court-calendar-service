@@ -1,16 +1,23 @@
-# courtbot-slco
+# Courtbot-SLCo
 
-a courtbot for salt lake county.
+A courtbot for Salt Lake County.
 
 ## Usage
 
-Request mock data from https://raw.githubusercontent.com/s2t2/courtbot-slco/master/mocks/reporting/upcoming_hearings.json.
+### Rest API
+
+Request json data from
+  [rest api endpoints](https://raw.githubusercontent.com/s2t2/courtbot-slco/master/mocks/rest/).
+
+### Reporting API
+
+Request json data from
+  [reporting api endpoints](https://raw.githubusercontent.com/s2t2/courtbot-slco/master/mocks/reporting/).
 
 ## Contributing
 
-Generate timestamps in a javascript console:
+Clone the repository.
 
-```` js
-var hearing_starts_at = new Date('2016-03-10T08:00:00')
-hearing_starts_at.getTime() //> 1457596800000
+```` sh
+git clone git@github.com:s2t2/courtbot-slco.git
 ````
