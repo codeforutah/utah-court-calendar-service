@@ -13,3 +13,5 @@
  + http://www.census.gov/2010census/partners/pdf/FIPS_StateCounty_Code.pdf
  + https://www.census.gov/geo/reference/codes/cou.html
  + http://www2.census.gov/geo/docs/reference/codes/files/st49_ut_cou.txt
+ + https://github.com/kuanb/atl_zoink/blob/master/rb/script/extract_transform_and_load.rb
+ + https://github.com/kuanb/atl_zoink/blob/master/rb/app/models.rb
