@@ -13,3 +13,6 @@ ActiveRecord::Base.establish_connection(
 
 class County < ActiveRecord::Base
 end
+
+class UtahCourt < ActiveRecord::Base
+end

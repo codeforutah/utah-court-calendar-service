@@ -22,3 +22,9 @@
  + https://pubapps.utcourts.gov/ePayments/EPayment.jsp
  + https://www.utcourts.gov/howto/filing/non-public/
  + http://ruby.bastardsbook.com/chapters/html-parsing/
+ + https://www.utcourts.gov/cal/data/AMERICAN_FORK_Calendar.pdf
+ + http://le.utah.gov/Documents/code_const.htm
+ + http://le.utah.gov/xcode/Title76/76.html?v=C76_1800010118000101
+ + http://le.utah.gov/xcode/Title76/C76_1800010118000101.xml
+ + https://www.utcourts.gov/admin/jobs/index.xml
+ + https://www.utcourts.gov/rss/opinions/index.xml

@@ -50,6 +50,7 @@ Migrate database.
 
 ```` sh
 ruby db/migrate/create_counties.rb
+ruby db/migrate/create_utah_courts.rb
 ````
 
 ### Usage
