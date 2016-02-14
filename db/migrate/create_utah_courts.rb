@@ -5,7 +5,7 @@ class CreateUtahCourts < ActiveRecord::Migration
     create_table :utah_courts do |t|
       t.string :type, :null => false
       t.string :name, :null => false
-      t.text :calendar_pdf_link
+      t.text :calendar_pdf_url
       t.timestamps
     end
 

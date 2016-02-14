@@ -28,3 +28,5 @@
  + http://le.utah.gov/xcode/Title76/C76_1800010118000101.xml
  + https://www.utcourts.gov/admin/jobs/index.xml
  + https://www.utcourts.gov/rss/opinions/index.xml
+ + http://stackoverflow.com/questions/2200825/convert-string-to-datetime
+ + http://ruby-doc.org/stdlib-2.3.0/libdoc/date/rdoc/DateTime.html#method-c-strptime

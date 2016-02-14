@@ -51,6 +51,7 @@ Migrate database.
 ```` sh
 ruby db/migrate/create_counties.rb
 ruby db/migrate/create_utah_courts.rb
+ruby db/migrate/create_utah_court_calendars.rb
 ````
 
 ### Usage
@@ -65,6 +66,12 @@ Extract Utah Courts.
 
 ```` sh
 ruby script/extract_utah_courts.rb
+````
+
+Extract Utah Court Calendars.
+
+```` sh
+ruby script/extract_utah_court_calendars.rb
 ````
 
 Backup database.

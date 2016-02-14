@@ -15,4 +15,11 @@ class County < ActiveRecord::Base
 end
 
 class UtahCourt < ActiveRecord::Base
+  #class DistrictCourt < UtahCourt ; end
+  #class JusticeCourt < UtahCourt ; end
+end
+class DistrictCourt < UtahCourt ; end
+class JusticeCourt < UtahCourt ; end
+
+class UtahCourtCalendar < ActiveRecord::Base
 end
