@@ -4,11 +4,16 @@
 
 ### Rest API
 
-Request json data from [rest api endpoints](/api/reporting/) using the base url: https://raw.githubusercontent.com/s2t2/utah-court-citation-service/master/api/rest/.
+Request json data from [rest api endpoints](/api/rest/):
+
+  + [`/api/rest/v0/citations.json`](https://raw.githubusercontent.com/s2t2/utah-court-citation-service/master/api/rest/citations.json)
+
 
 ### Reporting API
 
-Request json data from [reporting api endpoints](/api/rest/) using the base url https://raw.githubusercontent.com/s2t2/utah-court-citation-service/master/api/reporting/.
+Request json data from [reporting api endpoints](/api/reporting/):
+
+  + [`/api/reporting/v0/upcoming_hearings.json`](https://raw.githubusercontent.com/s2t2/utah-court-citation-service/master/api/reporting/upcoming_hearings.json)
 
 ## Contributing
 
