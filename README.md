@@ -1,16 +1,14 @@
-# Courtbot - SLCo
-
-A courtbot for Salt Lake County.
+# Utah Court Citation Service
 
 ## APIs
 
 ### Rest API
 
-Request json data from [rest api endpoints](/api/reporting/) using the base url: https://raw.githubusercontent.com/s2t2/courtbot-slco/master/api/rest/.
+Request json data from [rest api endpoints](/api/reporting/) using the base url: https://raw.githubusercontent.com/s2t2/utah-court-citation-service/master/api/rest/.
 
 ### Reporting API
 
-Request json data from [reporting api endpoints](/api/rest/) using the base url https://raw.githubusercontent.com/s2t2/courtbot-slco/master/api/reporting/.
+Request json data from [reporting api endpoints](/api/rest/) using the base url https://raw.githubusercontent.com/s2t2/utah-court-citation-service/master/api/reporting/.
 
 ## Contributing
 
@@ -25,8 +23,8 @@ Request json data from [reporting api endpoints](/api/rest/) using the base url 
 Download source code and install package dependencies.
 
 ```` sh
-git clone git@github.com:s2t2/courtbot-slco.git
-cd courtbot-slco/
+git clone git@github.com:s2t2/utah-court-citation-service.git
+cd utah-court-citation-service/
 bundle install
 ````
 

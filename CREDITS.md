@@ -42,3 +42,9 @@
  + https://www.utcourts.gov/xchange/help/?PRNT_VRSN=PRNT_VRSN
  + https://www.utcourts.gov/xchange/codes.asp?type=case
  + https://www.utcourts.gov/xchange/subscribe/
+ + https://ecf.utd.uscourts.gov/cgi-bin/PubCal.pl
+ + http://www.slcdocs.com/courts/PDF/code1009.pdf
+ + http://www.utcourts.gov/directory/directorymap.asp
+ + http://legaldockets.com/utah/
+ + http://www.utcourts.gov/directory/directorymap.asp
+ + https://www.utcourts.gov/resources/wireless/index.html -- sweet
