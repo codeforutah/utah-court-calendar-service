@@ -1,24 +1,24 @@
 [
   {
     "citation_number":"",
+    "lea_number":"15-163958",
+    "offender_tracking_number":49064264,
+    "sheriff_number":"",
+    "some_other_numbers_not_sure":"S18 151601653",
     "hearing_type":"PRETRIAL CONFERENCE",
-    "not_sure??":"S18 151601653",
-    "level":"Other Misdemeanor",
     "prosecution":"STATE OF UTAH",
     "prosecutor":"GILL, SIMARJIT S",
+    "prosecuting_agency_number":"15023786",
     "defense":"NAVARRO, CARLOS",
     "defendant":"AL-MASLOOKHI, MUSTAFA IDAN FLAYYIH",
-    "offender_tracking_number":49064264
+    "defendant_dob":"11/21/1988",
+    "offense_level":"Other Misdemeanor",
+    "offense_type":"MB - ASSAULT",
+    "offense_date":"09/24/15",
+    "domestic_violence":true,
+    "failure_to_appear":null,
+    "hearing_day":"Friday",
+    "hearing_date":"February 12, 2016",
+    "presiding_judge":"SHAUNA GRAVES-ROBERTSON"
   }
 ]
-
-
-  ATTY:
- VS.
-  ATTY:
-  DOB: 11/21/1988
-
- MB - ASSAULT - 09/24/15
- > CASE INVOLVES DOMESTIC VIOLENCE <
- CITATION #: SHERIFF #: LEA #: 15-163958
- PROSECUTING AGENCY NUMBER: 15023786
