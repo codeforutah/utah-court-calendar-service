@@ -1,0 +1,29 @@
+UT,49,001,Beaver County,H1
+UT,49,003,Box Elder County,H1
+UT,49,005,Cache County,H1
+UT,49,007,Carbon County,H1
+UT,49,009,Daggett County,H1
+UT,49,011,Davis County,H1
+UT,49,013,Duchesne County,H1
+UT,49,015,Emery County,H1
+UT,49,017,Garfield County,H1
+UT,49,019,Grand County,H1
+UT,49,021,Iron County,H1
+UT,49,023,Juab County,H1
+UT,49,025,Kane County,H1
+UT,49,027,Millard County,H1
+UT,49,029,Morgan County,H1
+UT,49,031,Piute County,H1
+UT,49,033,Rich County,H1
+UT,49,035,Salt Lake County,H1
+UT,49,037,San Juan County,H1
+UT,49,039,Sanpete County,H1
+UT,49,041,Sevier County,H1
+UT,49,043,Summit County,H1
+UT,49,045,Tooele County,H1
+UT,49,047,Uintah County,H1
+UT,49,049,Utah County,H1
+UT,49,051,Wasatch County,H1
+UT,49,053,Washington County,H1
+UT,49,055,Wayne County,H1
+UT,49,057,Weber County,H1

@@ -2,3 +2,31 @@
 
  + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
  + http://www.latlong.net/convert-address-to-lat-long.html
+ + http://pmatsinopoulos.github.io/blog/2014/08/29/united-states-counties-cities-csv-ruby-loading-code/
+ + https://github.com/ajb/concensus
+ + https://github.com/raypereda/fips-county-codes/blob/master/lib/national.txt
+ + https://lifeasclay.wordpress.com/2010/07/15/parsing-us-census-data-with-ruby/
+ + https://github.com/tyrauber/census_api
+ + http://www.census.gov/developers/
+ + http://www.geonames.org/postal-codes/US/UT/utah.html
+ + https://github.com/buytruckload/geonames_api
+ + http://www.census.gov/2010census/partners/pdf/FIPS_StateCounty_Code.pdf
+ + https://www.census.gov/geo/reference/codes/cou.html
+ + http://www2.census.gov/geo/docs/reference/codes/files/st49_ut_cou.txt
+ + https://github.com/kuanb/atl_zoink/blob/master/rb/script/extract_transform_and_load.rb
+ + https://github.com/kuanb/atl_zoink/blob/master/rb/app/models.rb
+ + https://github.com/PostgresApp/PostgresApp/issues/9
+ + http://stackoverflow.com/a/35385839/670433
+ + https://www.utcourts.gov/cal/index.html
+ + https://www.utcourts.gov/epayments/
+ + https://pubapps.utcourts.gov/ePayments/EPayment.jsp
+ + https://www.utcourts.gov/howto/filing/non-public/
+ + http://ruby.bastardsbook.com/chapters/html-parsing/
+ + https://www.utcourts.gov/cal/data/AMERICAN_FORK_Calendar.pdf
+ + http://le.utah.gov/Documents/code_const.htm
+ + http://le.utah.gov/xcode/Title76/76.html?v=C76_1800010118000101
+ + http://le.utah.gov/xcode/Title76/C76_1800010118000101.xml
+ + https://www.utcourts.gov/admin/jobs/index.xml
+ + https://www.utcourts.gov/rss/opinions/index.xml
+ + http://stackoverflow.com/questions/2200825/convert-string-to-datetime
+ + http://ruby-doc.org/stdlib-2.3.0/libdoc/date/rdoc/DateTime.html#method-c-strptime
