@@ -30,3 +30,21 @@
  + https://www.utcourts.gov/rss/opinions/index.xml
  + http://stackoverflow.com/questions/2200825/convert-string-to-datetime
  + http://ruby-doc.org/stdlib-2.3.0/libdoc/date/rdoc/DateTime.html#method-c-strptime
+ + https://github.com/ricn/kristin
+ + https://www.courtlistener.com/api/rest-info/
+ + https://www.courtlistener.com/?q=&court_utd=on&order_by=score+desc
+ + https://www.courtlistener.com/?q=&court_utah=on&order_by=score+desc
+ + https://www.courtlistener.com/?q=&court_utahctapp=on&order_by=score+desc
+ + http://www.utd.uscourts.gov/documents/casepage.html
+ + https://www.utcourts.gov/xchange/?content=what
+ + https://www.utcourts.gov/xchange/subscribe/
+ + https://www.utcourts.gov/xchange/?content=coverage
+ + https://www.utcourts.gov/xchange/help/?PRNT_VRSN=PRNT_VRSN
+ + https://www.utcourts.gov/xchange/codes.asp?type=case
+ + https://www.utcourts.gov/xchange/subscribe/
+ + https://ecf.utd.uscourts.gov/cgi-bin/PubCal.pl
+ + http://www.slcdocs.com/courts/PDF/code1009.pdf
+ + http://www.utcourts.gov/directory/directorymap.asp
+ + http://legaldockets.com/utah/
+ + http://www.utcourts.gov/directory/directorymap.asp
+ + https://www.utcourts.gov/resources/wireless/index.html -- sweet
