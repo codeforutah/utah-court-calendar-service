@@ -48,3 +48,7 @@
  + http://legaldockets.com/utah/
  + http://www.utcourts.gov/directory/directorymap.asp
  + https://www.utcourts.gov/resources/wireless/index.html -- sweet
+ + http://stackoverflow.com/a/10668473/670433
+ + http://ruby-doc.org/core-2.2.0/String.html#method-i-partition
+ + https://github.com/yob/pdf-reader/issues/102
+ + https://github.com/yob/pdf-reader/issues/102#issuecomment-19873621

@@ -11,15 +11,14 @@ ActiveRecord::Base.establish_connection(
   pool: 5
 ) #todo: read from environment-specific config file and set password environment variable in production (standard rails config)
 
-class County < ActiveRecord::Base
-end
+class County < ActiveRecord::Base ; end
 
-class UtahCourt < ActiveRecord::Base
+class UtahCourt < ActiveRecord::Base ; end
+  class DistrictCourt < UtahCourt ; end
+  class JusticeCourt < UtahCourt ; end
 
-end
+class UtahCourtCalendar < ActiveRecord::Base ; end
 
-class DistrictCourt < UtahCourt ; end
-class JusticeCourt < UtahCourt ; end
+class UtahCourtCalendarPage < ActiveRecord::Base ; end
 
-class UtahCourtCalendar < ActiveRecord::Base
-end
+class UtahCourtCalendarEvent < ActiveRecord::Base ; end

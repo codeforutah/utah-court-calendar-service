@@ -33,7 +33,29 @@ module UtahCourtsHelper
   end
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module PdfReaderHelper
+  ###EVENT_DIVIDER = "------------------------------------------------------------------------------"
+
   #
   # @param [String] reader_info_date_string A value like "D:20160212021328-07'00'"
   def self.to_datetime(reader_info_date_string)

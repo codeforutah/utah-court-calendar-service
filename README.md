@@ -10,8 +10,6 @@
 
   + /upcoming-hearings.json
 
-
-
 ## Contributing
 
 ### Prerequisites
@@ -52,6 +50,7 @@ Migrate database.
 ruby db/migrate/create_counties.rb
 ruby db/migrate/create_utah_courts.rb
 ruby db/migrate/create_utah_court_calendars.rb
+ruby db/migrate/create_utah_court_calendar_pages.rb
 ````
 
 ## Usage
