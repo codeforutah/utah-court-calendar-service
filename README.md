@@ -1,19 +1,16 @@
-# Utah Court Citation Service
+# Utah Court Calendar Service
 
 ## APIs
 
-### Rest API
+### [Rest API](/api/rest/)
 
-Request json data from [rest api endpoints](/api/rest/):
+  + /courts.json
 
-  + [`/api/rest/v0/citations.json`](https://raw.githubusercontent.com/s2t2/utah-court-citation-service/master/api/rest/citations.json)
+### [Reporting API](/api/reporting/)
+
+  + /upcoming-hearings.json
 
 
-### Reporting API
-
-Request json data from [reporting api endpoints](/api/reporting/):
-
-  + [`/api/reporting/v0/upcoming_hearings.json`](https://raw.githubusercontent.com/s2t2/utah-court-citation-service/master/api/reporting/upcoming_hearings.json)
 
 ## Contributing
 
@@ -28,8 +25,8 @@ Request json data from [reporting api endpoints](/api/reporting/):
 Download source code and install package dependencies.
 
 ```` sh
-git clone git@github.com:s2t2/utah-court-citation-service.git
-cd utah-court-citation-service/
+git clone git@github.com:OpenSaltLake/utah-court-calendar-service.git
+cd utah-court-calendar-service/
 bundle install
 ````
 
@@ -57,23 +54,13 @@ ruby db/migrate/create_utah_courts.rb
 ruby db/migrate/create_utah_court_calendars.rb
 ````
 
-### Usage
+## Usage
 
-Extract Utah Counties.
+Extract, transform, and load data.
 
 ```` sh
 ruby script/extract_utah_counties.rb
-````
-
-Extract Utah Courts.
-
-```` sh
 ruby script/extract_utah_courts.rb
-````
-
-Extract Utah Court Calendars.
-
-```` sh
 ruby script/extract_utah_court_calendars.rb
 ````
 

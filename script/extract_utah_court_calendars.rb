@@ -2,36 +2,34 @@ require 'pry'
 require 'pdf-reader'
 require 'open-uri'
 require_relative '../app/models.rb'
+require_relative '../app/helpers.rb'
 
-# @param [String] reader_info_date_string A value like "D:20160212021328-07'00'"
-def reader_info_datetime(reader_info_date_string)
-  date_string = reader_info_date_string.gsub("D:","").gsub("-07'00'","")
-  return DateTime.parse(date_string)
-end
+include PdfReaderHelper
 
 UtahCourt.all.each do |court|
-  pdf_url = court.calendar_pdf_url #> "https://www.utcourts.gov/cal/data/AMERICAN_FORK_Calendar.pdf"
-  io = open(pdf_url, "rb")
+  url = court.calendar_url #> "https://www.utcourts.gov/cal/data/AMERICAN_FORK_Calendar.pdf"
+  io = open(url, "rb")
   reader = PDF::Reader.new(io)
-
-  #
-  # Parse and persist document metadata.
-  #
+  page_count = reader.page_count
+  created_at = PdfReaderHelper.to_datetime(reader.info[:CreationDate])
+  modified_at = PdfReaderHelper.to_datetime(reader.info[:ModDate])
 
   court_cal = UtahCourtCalendar.where({
     :utah_court_id => court.id,
-    :court_date => Date.today,
-    :pdf_url => pdf_url
+    :url => url,
+    :modified_at => modified_at
   }).first_or_create!
   court_cal.update_attributes!({
-    :pdf_created_at => reader_info_datetime(reader.info[:CreationDate]),
-    :pdf_modified_at => reader_info_datetime(reader.info[:ModDate]),
-    :page_count => reader.page_count
+    :created_at => created_at,
+    :requested_at => Time.now,
+    :page_count => page_count
   })
   pp court_cal.inspect
 
+  binding.pry
+
   #
-  # Parse and persist document content.
+  # PARSE PAGES
   #
 
   reader.pages.each do |page|

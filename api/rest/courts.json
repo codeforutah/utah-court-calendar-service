@@ -1,6 +1,5 @@
 [
   {
-    "id":1,
     "name":"Salt Lake County Justice Court",
     "address":"2001 S State St #4200, Salt Lake City, UT 84190",
     "phone":"(801) 468-3430",
@@ -17,7 +16,6 @@
     ]
   },
   {
-    "id":2,
     "name":"Salt Lake County Probation Services",
     "address":"145 1300 S #501, Salt Lake City, UT 84115",
     "phone":"(385) 468-3500",

@@ -6,7 +6,7 @@ ActiveRecord::Base.establish_connection(
   host:     'localhost',
   username: 'courtbot_slco',
   password: 'c0urtb0t!',
-  database: 'courtbot_slco',
+  database: 'utah_courts',
   encoding: 'unicode',
   pool: 5
 ) #todo: read from environment-specific config file and set password environment variable in production (standard rails config)
@@ -15,9 +15,9 @@ class County < ActiveRecord::Base
 end
 
 class UtahCourt < ActiveRecord::Base
-  #class DistrictCourt < UtahCourt ; end
-  #class JusticeCourt < UtahCourt ; end
+
 end
+
 class DistrictCourt < UtahCourt ; end
 class JusticeCourt < UtahCourt ; end
 

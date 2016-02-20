@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS courtbot_slco;
-CREATE DATABASE courtbot_slco;
-GRANT ALL PRIVILEGES ON DATABASE courtbot_slco to courtbot_slco;
+DROP DATABASE IF EXISTS utah_courts;
+CREATE DATABASE utah_courts;
+GRANT ALL PRIVILEGES ON DATABASE utah_courts to courtbot_slco;
