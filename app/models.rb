@@ -14,6 +14,8 @@ ActiveRecord::Base.establish_connection(
 class County < ActiveRecord::Base ; end
 
 class UtahCourt < ActiveRecord::Base
+  has_many :utah_court_calendars, :inverse_of => :utah_court
+
  def lat
    "todo"
  end
@@ -29,7 +31,19 @@ end
 class DistrictCourt < UtahCourt ; end
 class JusticeCourt < UtahCourt ; end
 
-class UtahCourtCalendar < ActiveRecord::Base ; end
+class UtahCourtCalendar < ActiveRecord::Base
+  belongs_to :utah_court, :inverse_of => :utah_court_calendars
+
+  serialize(:parsing_errors, Array)
+
+  def date
+    requested_at.to_date
+  end
+
+  def inspect
+    "#{utah_court.name} #{utah_court.type.titlecase} -- #{url} -- #{page_count}"
+  end
+end
 
 class UtahCourtCalendarPage < ActiveRecord::Base ; end
 

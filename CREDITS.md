@@ -54,3 +54,5 @@
  + https://github.com/yob/pdf-reader/issues/102#issuecomment-19873621
  + http://stackoverflow.com/questions/19643444/ruby-datetime-parsing-from-mm-dd-yyyy-format
  + http://ruby-doc.org/stdlib-1.9.3/libdoc/date/rdoc/DateTime.html
+ + http://stackoverflow.com/a/11352577/670433
+ + http://stackoverflow.com/a/80387/670433

@@ -7,38 +7,47 @@ require_relative '../app/helpers.rb'
 include PdfReaderHelper
 
 #UtahCourt.all.each do |court|
-UtahCourt.where("name LIKE '%Salt Lake County%'").each do |court|
-  url = court.calendar_url #> "https://www.utcourts.gov/cal/data/AMERICAN_FORK_Calendar.pdf"
-  io = open(url, "rb")
+UtahCourt.where("name LIKE '%Salt Lake%'").each do |court|
+  io = open(court.calendar_url, "rb")
   reader = PDF::Reader.new(io)
 
-  #
-  # DOCUMENT METADATA
-  #
+  court_calendar = UtahCourtCalendar.where({
+    :utah_court_id => court.id,
+    :url => court.calendar_url,
+    :modified_at => PdfReaderHelper.to_datetime(reader.info[:ModDate])
+  }).first_or_create!
 
-  page_count = reader.page_count
+  court_calendar.update_attributes!({
+    :created_at => PdfReaderHelper.to_datetime(reader.info[:CreationDate]),
+    :requested_at => Time.now,
+    :page_count => reader.page_count
+  })
 
-  created_at = PdfReaderHelper.to_datetime(reader.info[:CreationDate])
-  modified_at = PdfReaderHelper.to_datetime(reader.info[:ModDate])
-
-  court_calendar = UtahCourtCalendar.where({:utah_court_id => court.id, :url => url, :modified_at => modified_at}).first_or_create!
-  court_calendar.update_attributes!({:created_at => created_at, :requested_at => Time.now, :page_count => page_count})
-
-  puts "#{court_calendar.url} -- #{court_calendar.page_count}"
-
-  #
-  # DOCUMENT CONTENT
-  #
+  puts court_calendar.inspect
 
   reader.pages.each do |page|
-    page_number = page.number
+    court_calendar_page = UtahCourtCalendarPage.where({
+      :utah_court_calendar_id => court_calendar.id,
+      :number => page.number,
+    }).first_or_create!
 
     begin
       page_content = page.text
-    rescue => e
-      puts "PAGE #{page_number} -- #{e.class} -- #{e.message}"
-      next if e.class == ArgumentError && e.message.include?("Unknown glyph width") # temp workaround for ... https://github.com/OpenSaltLake/utah-court-calendar-service/issues/2
+      court_calendar_page.update_attributes!({:parsable => true})
+    rescue => e # e.class == ArgumentError && e.message.include?("Unknown glyph width")
+      puts " + UNPARSABLE PAGE #{court_calendar_page.number} -- #{e.class} -- #{e.message}"
+      court_calendar_page.update_attributes!({:parsable => false, :parsing_errors => ["#{e.class} -- #{e.message}"]})
     end
+
+
+    #binding.pry
+=begin
+    court_calendar_page.update_attributes({:events_count => })
+    court_calendar_page.update_attributes({:parsable => parsable})
+
+    next unless court_calendar_page.parsable?
+
+
 
     court_day = Date::DAYNAMES.map{|day| page_content[day]}.compact.first
 
@@ -49,13 +58,8 @@ UtahCourt.where("name LIKE '%Salt Lake County%'").each do |court|
       next if page_content.include?("Nothing to Report") # temp workaround for ... https://github.com/OpenSaltLake/utah-court-calendar-service/issues/3
     end
 
-    #
-    # PAGE HEADER CONTENT
-    #
-
     header_content = partition.first
     header_rows = header_content.split("\n") - [""]
-
     jurisdiction = header_rows.first.strip #> "SECOND DISTRICT-BOUNTIFUL"
     month_name = Date::MONTHNAMES.compact.map{|month| header_rows[1][month] }.compact.first #> "February"
     month_name_index = header_rows[1].index(month_name) #>  64
@@ -114,16 +118,15 @@ UtahCourt.where("name LIKE '%Salt Lake County%'").each do |court|
       next if rows.empty?
 
       #
-      # HEADER ROW
+      # EVENT HEADER ROW
       #
 
-      header_row = rows.first #> "08:00 AM       PRETRIAL CONFERENCE                BOU 151800323 Other Misdemeanor"
-      header_cells = header_row.split("     ").map{|cell| cell.strip} - [""]
+      event_header_row = rows.first #> "08:00 AM       PRETRIAL CONFERENCE                BOU 151800323 Other Misdemeanor"
+      header_cells = event_header_row.split("     ").map{|cell| cell.strip} - [""]
 
       @hearing_time = header_cells.find{|str| str.include?(" AM") || str.include?(" PM")} || @hearing_time || "OOPS" #> "08:00 AM"
 
-
-      if header_cells.include?(@hearing_time) && (header_cells.include?("SMALL CLAIMS") || header_row.include?("Small Claim"))
+      if header_cells.include?(@hearing_time) && (header_cells.include?("SMALL CLAIMS") || event_header_row.include?("Small Claim"))
         hearing_type = header_cells[1] #> "SMALL CLAIMS"
         case_number = header_cells.last.split(" ").first #> "158601073"
         case_type = header_cells.last.split(" ").last(2).join(" ") #> "Small Claim"
@@ -139,9 +142,9 @@ UtahCourt.where("name LIKE '%Salt Lake County%'").each do |court|
         hearing_type = header_cells.first #> "SMALL CLAIMS"
         case_number = header_cells.last.split(" ").first #> "158601096"
         case_type = header_cells.last.split(" ").last(2).join(" ") #> "Small Claim"
-      elsif header_row.include?("ATTY:")
+      elsif event_header_row.include?("ATTY:")
         next #todo: handle
-      elsif header_row.include?("Small") #|| case_type.include?("Misdemeanor")
+      elsif event_header_row.include?("Small") #|| case_type.include?("Misdemeanor")
         hearing_type = header_cells.first #> "SUPPLEMENTAL ORDER"
         case_number = header_cells.last.split(" ").first #> "158600100"
         case_type = header_cells.last.split(" ").last(2).join(" ") #> "Small Claim"
@@ -151,15 +154,7 @@ UtahCourt.where("name LIKE '%Salt Lake County%'").each do |court|
         case_type = header_cells.last.split(" ").last(2).join(" ") #> "Other Misdemeanor"
       end # this is terrible
 
-
       ###binding.pry if case_number.try(:include?, "Small") || case_number.try(:include?, "ORDER TO")
-
-
-
-
-
-
-
 
       #
       # ATTORNEY ROWS
@@ -187,6 +182,7 @@ UtahCourt.where("name LIKE '%Salt Lake County%'").each do |court|
         offender_tracking_number = nil if offender_tracking_number == ""
         date_string_of_birth = ids_row.split("DOB: ").last.strip #> "02/28/1978"
         date_of_birth = Date.strptime(date_string_of_birth, "%m/%d/%Y")
+        #date_of_birth_regex = /\d{2}\/\d{2}\/\d{4}/ #> like "06/19/1994"
       end
 
       #
@@ -228,31 +224,51 @@ UtahCourt.where("name LIKE '%Salt Lake County%'").each do |court|
         end
       end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       #
-      # ROWS OF CHARGES
+      # CHARGES SECTION
       #
 
-      charge_rows = rows.select{|row|
-        PdfReaderHelper.charge_abbreviation_matchers.map{|matcher|
-          row.include?(matcher)
-        }.include?(true)
-      } #> ["MB - THEFT                                         - 08/08/15", "MB - RETAIL THEFT (SHOPLIFTING)                    - 12/12/15"]
-      charges = charge_rows.map{|charge_row|
-        court_date_string = charge_row.split("-").last.strip #> "08/08/15"
 
-        begin
-          court_date = Date.strptime(court_date_string, "%m/%d/%Y")
-        rescue => e
-          puts "#{e.class} -- #{e.message} -- #{court_date_string}"
-          court_date = court_date_string #todo: handle multiline charges
-        end
+      charge_date_regex = /\d{2}\/\d{2}\/\d{2}/ #> like "07/05/15"
+      event_content.scan(charge_date_regex)
 
-        charge = {
-          :level => charge_row.split("-").first.strip, #> "MB"
-          :code => charge_row.split("-")[1].strip, #> "THEFT"
-          :date =>  court_date
-        }
-      }
+      ###charge_rows = rows.select{|row|
+      ###  PdfReaderHelper.charge_abbreviation_matchers.map{|matcher|
+      ###    row.include?(matcher)
+      ###  }.include?(true)
+      ###} #> ["MB - THEFT                                         - 08/08/15", "MB - RETAIL THEFT (SHOPLIFTING)                    - 12/12/15"]
+      ###charges = charge_rows.map{|charge_row|
+      ###  court_date_string = charge_row.split("-").last.strip #> "08/08/15"
+###
+      ###  begin
+      ###    court_date = Date.strptime(court_date_string, "%m/%d/%Y")
+      ###  rescue => e
+      ###    puts "#{e.class} -- #{e.message} -- #{court_date_string}"
+      ###    court_date = court_date_string #todo: handle multiline charges
+      ###  end
+###
+      ###  charge = {
+      ###    :level => charge_row.split("-").first.strip, #> "MB"
+      ###    :code => charge_row.split("-")[1].strip, #> "THEFT"
+      ###    :date =>  court_date
+      ###  }
+      ###}
 
       #
       # PROSECUTING AGENCY IDENTIFICATION ROW
@@ -326,7 +342,17 @@ UtahCourt.where("name LIKE '%Salt Lake County%'").each do |court|
         ]
       }
 
-      pp upcoming_hearing[:case][:number]
+      pp upcoming_hearing #[:case][:number]
     end
-  end
-end
+
+
+
+
+
+
+
+
+
+=end
+  end # reader.pages.each
+end # UtahCourt.all.each
