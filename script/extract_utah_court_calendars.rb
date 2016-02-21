@@ -56,25 +56,32 @@ UtahCourt.extractable.each do |court|
     }).first_or_create!
     rows = page_content.split("\n").map{|row| row.strip } - [""]
     jurisdiction = rows.first
-    if page_content.scan("Nothing to Report: ").any?
-      binding.pry
-      calendar_start_date = Date.parse("2014-01-01")
-      calendar_end_date = Date.parse("2014-12-25")
-      court_date_range = (calendar_start_date..calendar_end_date)
-      court_dates = court_date_range.to_a
-      judge = "ALL"
+    if page_content.scan("Nothing to Report").any? # handles https://github.com/OpenSaltLake/utah-court-calendar-service/issues/3
+      starting_date_row = rows.find{|row| row.include?("STARTING:")}
+      starting_date_string = starting_date_row.gsub("STARTING:","").split(" - ").first.strip #> "02/17/2016"
+      starting_date = Date.strptime(starting_date_string, "%m/%d/%Y")
+      ending_date_row = rows.find{|row| row.include?("ENDING:")}
+      ending_date_string = ending_date_row.gsub("ENDING:","").split(" - ").first.strip #> "03/16/2016"
+      ending_date = Date.strptime(ending_date_string, "%m/%d/%Y")
+
+      judge_row = rows.find{|row| row.include?("JUDGE:")} #> "JUDGE: All"
+      judge = judge_row.gsub("JUDGE:","").strip #> "All"
     else
       month = Date::MONTHNAMES.compact.map{|month| rows[1][month] }.compact.first #> "February"
       month_index = rows[1].index(month) #>  64
       court_date_string = rows[1].slice(month_index.. rows[1].length).strip #> "February 22, 2016"
       court_date = Date.strptime(court_date_string, "%B %d, %Y")
-      court_dates = [court_date.to_s]
+      starting_date = court_date
+      ending_date = court_date
+
       judge = rows[1].slice(0..month_index - 1).strip #> "GLEN R DAWSON"
     end
     court_calendar_page_header.update_attributes!({
       :jurisdiction => jurisdiction,
       :judge => judge,
-      :court_dates => court_dates
+      #:court_dates => court_dates
+      :start_date => starting_date,
+      :end_date => ending_date
     })
 
     #

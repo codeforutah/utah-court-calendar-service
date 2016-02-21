@@ -6,7 +6,8 @@ class CreateUtahCourtCalendarPageHeaders < ActiveRecord::Migration
       t.integer :utah_court_calendar_page_id, :null => false
       t.string :jurisdiction
       t.string :judge
-      t.text :court_dates
+      t.date :start_date
+      t.date :end_date
       t.timestamps
     end
 

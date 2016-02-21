@@ -22,7 +22,7 @@ class UtahCourt < ActiveRecord::Base
   end
 
   def self.extractable
-    all # salt_lake
+    all #where("name LIKE '%Aurora%'") #all # salt_lake
   end
 
   def lat
