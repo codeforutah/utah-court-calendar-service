@@ -118,18 +118,48 @@ UtahCourt.where("name LIKE '%Salt Lake County%'").each do |court|
       #
 
       header_row = rows.first #> "08:00 AM       PRETRIAL CONFERENCE                BOU 151800323 Other Misdemeanor"
-      header_cells = header_row.split("       ").map{|cell| cell.strip} - [""]
+      header_cells = header_row.split("     ").map{|cell| cell.strip} - [""]
 
       @hearing_time = header_cells.find{|str| str.include?(" AM") || str.include?(" PM")} || @hearing_time || "OOPS" #> "08:00 AM"
-      if header_cells.include?(@hearing_time)
+
+
+      if header_cells.include?(@hearing_time) && (header_cells.include?("SMALL CLAIMS") || header_row.include?("Small Claim"))
+        hearing_type = header_cells[1] #> "SMALL CLAIMS"
+        case_number = header_cells.last.split(" ").first #> "158601073"
+        case_type = header_cells.last.split(" ").last(2).join(" ") #> "Small Claim"
+      elsif header_cells.include?(@hearing_time)
         hearing_type = header_cells[1] #> "PRETRIAL CONFERENCE"
         case_number = header_cells.last.split(" ").first(2).join(" ") #> "BOU 151800323"
         case_type = header_cells.last.split(" ").last(2).join(" ") #> "Other Misdemeanor"
-      else
+      elsif header_cells.include?("*********")
         hearing_type = header_cells.first #> "*********"
         case_number = header_cells.last.split(" ").first(2).join(" ") #> "S18 031601507"
         case_type = header_cells.last.split(" ").last(2).join(" ") #> "Other Misdemeanor"
-      end
+      elsif header_cells.include?("SMALL CLAIMS")
+        hearing_type = header_cells.first #> "SMALL CLAIMS"
+        case_number = header_cells.last.split(" ").first #> "158601096"
+        case_type = header_cells.last.split(" ").last(2).join(" ") #> "Small Claim"
+      elsif header_row.include?("ATTY:")
+        next #todo: handle
+      elsif header_row.include?("Small") #|| case_type.include?("Misdemeanor")
+        hearing_type = header_cells.first #> "SUPPLEMENTAL ORDER"
+        case_number = header_cells.last.split(" ").first #> "158600100"
+        case_type = header_cells.last.split(" ").last(2).join(" ") #> "Small Claim"
+      else
+        hearing_type = header_cells.first #> "PRETRIAL CONFERENCE"
+        case_number = header_cells.last.split(" ").first(2).join(" ") #> "S18 151601686"
+        case_type = header_cells.last.split(" ").last(2).join(" ") #> "Other Misdemeanor"
+      end # this is terrible
+
+
+      ###binding.pry if case_number.try(:include?, "Small") || case_number.try(:include?, "ORDER TO")
+
+
+
+
+
+
+
 
       #
       # ATTORNEY ROWS
