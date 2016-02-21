@@ -13,9 +13,21 @@ ActiveRecord::Base.establish_connection(
 
 class County < ActiveRecord::Base ; end
 
-class UtahCourt < ActiveRecord::Base ; end
-  class DistrictCourt < UtahCourt ; end
-  class JusticeCourt < UtahCourt ; end
+class UtahCourt < ActiveRecord::Base
+ def lat
+   "todo"
+ end
+
+ def lon
+   "todo"
+ end
+
+ def arrival_instructions
+   "todo"
+ end
+end
+class DistrictCourt < UtahCourt ; end
+class JusticeCourt < UtahCourt ; end
 
 class UtahCourtCalendar < ActiveRecord::Base ; end
 

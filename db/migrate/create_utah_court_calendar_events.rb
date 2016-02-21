@@ -1,4 +1,3 @@
-=begin
 require_relative "../../app/models.rb"
 
 class CreateUtahCourtCalendarEvents < ActiveRecord::Migration
@@ -16,7 +15,8 @@ class CreateUtahCourtCalendarEvents < ActiveRecord::Migration
       t.string :lea_number
 
       t.text :prosecution
-      t.text :district_attorneys
+      t.string :prosecuting_agency_number
+      t.text :prosecutors # attorneys
 
       t.text :defendants
       t.text :defense_attorneys
@@ -31,4 +31,3 @@ class CreateUtahCourtCalendarEvents < ActiveRecord::Migration
 end
 
 CreateUtahCourtCalendarEvents.migrate(:up)
-=end

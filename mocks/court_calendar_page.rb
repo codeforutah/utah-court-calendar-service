@@ -53,5 +53,41 @@ page = {
     "                          >      NO OTN NUMBER       <",
     "                              >     CASE EFILED   <",
     "  ------------------------------------------------------------------------------"
+  ],
+  :events_content => "\n\n08:00 AM       PRETRIAL CONFERENCE                BOU 151800323 Other Misdemeanor\n         BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C\n     VS.\n         ALFATLAWI, HUSSAIN K                       ATTY:\n             OTN:             DOB: 01/01/1954\n\n\n         MB - THEFT                                         - 08/08/15\n\nCITATION #:              SHERIFF #:             LEA #: 2015-002957\n                          >   >  NO CASE EFILED   <  <\n  ------------------------------------------------------------------------------\n\n               PRETRIAL CONFERENCE                BOU 151800497 Other Misdemeanor\n         BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C\n     VS.\n         ARAMAKI, MATTHEW NISH                      ATTY: BRADSHAW, JIM C\n             OTN:             DOB: 08/11/1996\n\n\n         MB - PMARIJUANA/SPICENTROLLED SUBSTANCE            - 12/17/15\n         MA - USE OR POSSESSION OF DRUG PARAPHERNALIA       - 12/17/15\n\nCITATION #: F631315      SHERIFF #:             LEA #: 2015-004633\n                          >      NO OTN NUMBER       <\n                              >     CASE EFILED   <\n  ------------------------------------------------------------------------------\n\n               PRETRIAL CONFERENCE                BOU 151800515 Other Misdemeanor\n         BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C\n     VS. BARRA, DEMARIE TODD                        ATTY:\n             OTN: 51571222    DOB: 06/23/1997\n\n\n         MB - ASSAULT                                       - 12/28/15\n         MB - CRIMINAL MISCHIEF                             - 12/28/15\n                 >      CASE INVOLVES DOMESTIC VIOLENCE        <\n\nCITATION #: V105268346   SHERIFF #:             LEA #: 2015-004750\n                              >     CASE EFILED   <\n  ------------------------------------------------------------------------------\n               PRETRIAL CONFERENCE                BOU 151800513 Other Misdemeanor\n         BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C\n                                                           STIRLING, DON C\n     VS.\n         DELAROSA, PAULO                            ATTY: STIRLING, DON C\n             OTN:             DOB: 12/12/1992\n\n\n         MB - POSSESSION OF CONTROLLED SUBSTANCE\n         MB - USE OR POSSESSION OF DRUG PARAPHERNALIA       - 12/28/15\n\nCITATION #: V105268247   SHERIFF #:             LEA #: 2015-004741\n                          >      NO OTN NUMBER       <\n                              >     CASE EFILED   <\n  ------------------------------------------------------------------------------",
+  :events => [
+    "\n\n08:00 AM       PRETRIAL CONFERENCE                BOU 151800323 Other Misdemeanor\n         BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C\n     VS.\n         ALFATLAWI, HUSSAIN K                       ATTY:\n             OTN:             DOB: 01/01/1954\n\n\n         MB - THEFT                                         - 08/08/15\n\nCITATION #:              SHERIFF #:             LEA #: 2015-002957\n                          >   >  NO CASE EFILED   <  <\n  ",
+    "\n\n               PRETRIAL CONFERENCE                BOU 151800497 Other Misdemeanor\n         BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C\n     VS.\n         ARAMAKI, MATTHEW NISH                      ATTY: BRADSHAW, JIM C\n             OTN:             DOB: 08/11/1996\n\n\n         MB - PMARIJUANA/SPICENTROLLED SUBSTANCE            - 12/17/15\n         MA - USE OR POSSESSION OF DRUG PARAPHERNALIA       - 12/17/15\n\nCITATION #: F631315      SHERIFF #:             LEA #: 2015-004633\n                          >      NO OTN NUMBER       <\n                              >     CASE EFILED   <\n  ",
+    "\n\n               PRETRIAL CONFERENCE                BOU 151800515 Other Misdemeanor\n         BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C\n     VS. BARRA, DEMARIE TODD                        ATTY:\n             OTN: 51571222    DOB: 06/23/1997\n\n\n         MB - ASSAULT                                       - 12/28/15\n         MB - CRIMINAL MISCHIEF                             - 12/28/15\n                 >      CASE INVOLVES DOMESTIC VIOLENCE        <\n\nCITATION #: V105268346   SHERIFF #:             LEA #: 2015-004750\n                              >     CASE EFILED   <\n  ",
+    "\n               PRETRIAL CONFERENCE                BOU 151800513 Other Misdemeanor\n         BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C\n                                                           STIRLING, DON C\n     VS.\n         DELAROSA, PAULO                            ATTY: STIRLING, DON C\n             OTN:             DOB: 12/12/1992\n\n\n         MB - POSSESSION OF CONTROLLED SUBSTANCE\n         MB - USE OR POSSESSION OF DRUG PARAPHERNALIA       - 12/28/15\n\nCITATION #: V105268247   SHERIFF #:             LEA #: 2015-004741\n                          >      NO OTN NUMBER       <\n                              >     CASE EFILED   <\n  "
+  ],
+  :first_event_rows_split => [
+    "08:00 AM       PRETRIAL CONFERENCE                BOU 151800323 Other Misdemeanor",
+    "         BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C",
+    "     VS.",
+    "         ALFATLAWI, HUSSAIN K                       ATTY:",
+    "             OTN:             DOB: 01/01/1954",
+    "         MB - THEFT                                         - 08/08/15",
+    "CITATION #:              SHERIFF #:             LEA #: 2015-002957",
+    "                          >   >  NO CASE EFILED   <  <",
+    "  " # the ">      NO OTN NUMBER       <" got dropped
+  ],
+  :first_event_rows_split_and_mapped => [
+    "08:00 AM       PRETRIAL CONFERENCE                BOU 151800323 Other Misdemeanor",
+    "BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C",
+    "VS.",
+    "ALFATLAWI, HUSSAIN K                       ATTY:",
+    "OTN:             DOB: 01/01/1954",
+    "MB - THEFT                                         - 08/08/15",
+    "CITATION #:              SHERIFF #:             LEA #: 2015-002957",
+    ">   >  NO CASE EFILED   <  <"
+  ],
+  :first_event_attorney_rows = [
+    "BOUNTIFUL CITY                             ATTY: YNCHAUSTI, JOHN C",
+    "ALFATLAWI, HUSSAIN K                       ATTY:"
+  ],
+  :first_event_representations = [
+    ["BOUNTIFUL CITY", "YNCHAUSTI, JOHN C"], #> (prosecution, prosecutor)
+    ["ALFATLAWI, HUSSAIN K"] # (defendant, defense)
   ]
 }

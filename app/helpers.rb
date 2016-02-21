@@ -54,7 +54,61 @@ end
 
 
 module PdfReaderHelper
-  ###EVENT_DIVIDER = "------------------------------------------------------------------------------"
+  EVENT_DIVIDER = "------------------------------------------------------------------------------"
+
+  CASE_TYPES = [
+    "State Felony",
+    "Misdemeanor DUI",
+    "Other Misdemeanor",
+    "Small Claim"
+  ]
+
+  HEARING_TYPES = [
+    "INITIAL APPEARANCE",
+    "ARRAIGNMENT ARR",
+    "SUMMONS ARRAIGNMENT",
+
+    "BENCH WARRANT HRG",
+    "BENCH WARRANT/OSC HEARING",
+    "BENCH WARRANT/OSC",
+    "BENCH WARRANT/ OSC",
+    "BENCH WARRANT HRG/SCHED CONF",
+    "SCHEDULING CONFERENCE 1",
+
+    "DISPOSITION",
+    "DISPOSITION HEARING",
+
+    "REVIEW HEARING",
+
+    "BW/COMPLETE JAIL TIME",
+    "BENCH WARRANT/SENTENCING",
+    "SENTENCING",
+
+    "SMALL CLAIMS"
+  ] # these are starting to look dirty
+
+  CHARGE_TYPES = [
+    {:name => "Felony - Level 1",       :abbreviation => "F1", :description => "____________",},
+    {:name => "Felony - Level 2",       :abbreviation => "F2", :description => "____________",},
+    {:name => "Felony - Level 3",       :abbreviation => "F3", :description => "____________",},
+    {:name => "Misdemeanor - Level A",  :abbreviation => "MA", :description => "____________",},
+    {:name => "Misdemeanor - Level B",  :abbreviation => "MB", :description => "____________",},
+    {:name => "Misdemeanor - Level C",  :abbreviation => "MC", :description => "____________",},
+    {:name => "Infraction",             :abbreviation => "IN", :description => "____________",},
+  ]
+
+  def self.charge_abbreviations
+    CHARGE_TYPES.map{|ct| ct[:abbreviation] }
+  end
+
+  def self.charge_abbreviation_matchers
+    charge_abbreviations.map{|ca| "#{ca} - "}
+  end
+
+
+
+
+
 
   #
   # @param [String] reader_info_date_string A value like "D:20160212021328-07'00'"
