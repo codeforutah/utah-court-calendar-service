@@ -4,13 +4,6 @@ class CreateUtahCourtCalendarEvents < ActiveRecord::Migration
   def change
     create_table :utah_court_calendar_events do |t|
       t.integer :utah_court_calendar_page_id, :null => false
-
-      #t.string :jurisdiction, :null => false
-      #t.string :court_day, :null => false
-      #t.string :court_date, :null => false
-      #t.string :judge_name
-      #t.string :court_room
-
       t.string :session_start_time
 
       t.string :hearing_type

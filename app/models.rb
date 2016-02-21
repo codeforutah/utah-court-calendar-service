@@ -11,28 +11,38 @@ ActiveRecord::Base.establish_connection(
   pool: 5
 ) #todo: read from environment-specific config file and set password environment variable in production (standard rails config)
 
-class County < ActiveRecord::Base ; end
+class County < ActiveRecord::Base
+end
 
 class UtahCourt < ActiveRecord::Base
   has_many :utah_court_calendars, :inverse_of => :utah_court
 
- def lat
-   "todo"
- end
+  def self.salt_lake
+    where("name LIKE '%Salt Lake%'")
+  end
 
- def lon
-   "todo"
- end
+  def self.extractable
+    all # salt_lake
+  end
 
- def arrival_instructions
+  def lat
    "todo"
- end
+  end
+
+  def lon
+   "todo"
+  end
+
+  def arrival_instructions
+   "todo"
+  end
 end
 class DistrictCourt < UtahCourt ; end
 class JusticeCourt < UtahCourt ; end
 
 class UtahCourtCalendar < ActiveRecord::Base
   belongs_to :utah_court, :inverse_of => :utah_court_calendars
+  has_many :utah_court_calendar_pages, :inverse_of => :utah_court_calendar
 
   serialize(:parsing_errors, Array)
 
@@ -45,6 +55,19 @@ class UtahCourtCalendar < ActiveRecord::Base
   end
 end
 
-class UtahCourtCalendarPage < ActiveRecord::Base ; end
+class UtahCourtCalendarPage < ActiveRecord::Base
+  belongs_to :utah_court_calendar, :inverse_of => :utah_court_calendar_pages
+  has_one :utah_court_calendar_page_header, :inverse_of => :utah_court_calendar_page
 
-class UtahCourtCalendarEvent < ActiveRecord::Base ; end
+  #def parsable?
+  #  parsable
+  #end
+end
+
+class UtahCourtCalendarPageHeader < ActiveRecord::Base
+  belongs_to :utah_court_calendar_page, :inverse_of => :utah_court_calendar_page_header
+  serialize(:court_dates, Array)
+end
+
+class UtahCourtCalendarEvent < ActiveRecord::Base
+end

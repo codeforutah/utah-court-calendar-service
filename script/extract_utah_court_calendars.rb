@@ -6,10 +6,13 @@ require_relative '../app/helpers.rb'
 
 include PdfReaderHelper
 
-#UtahCourt.all.each do |court|
-UtahCourt.where("name LIKE '%Salt Lake%'").each do |court|
+UtahCourt.extractable.each do |court|
   io = open(court.calendar_url, "rb")
   reader = PDF::Reader.new(io)
+
+  #
+  # CALENDAR PDF
+  #
 
   court_calendar = UtahCourtCalendar.where({
     :utah_court_id => court.id,
@@ -26,18 +29,97 @@ UtahCourt.where("name LIKE '%Salt Lake%'").each do |court|
   puts court_calendar.inspect
 
   reader.pages.each do |page|
+
+    #
+    # PAGE
+    #
+
     court_calendar_page = UtahCourtCalendarPage.where({
       :utah_court_calendar_id => court_calendar.id,
       :number => page.number,
     }).first_or_create!
-
     begin
       page_content = page.text
       court_calendar_page.update_attributes!({:parsable => true})
     rescue => e # e.class == ArgumentError && e.message.include?("Unknown glyph width")
-      puts " + UNPARSABLE PAGE #{court_calendar_page.number} -- #{e.class} -- #{e.message}"
+      puts "  + UNPARSABLE PAGE #{court_calendar_page.number} -- #{e.class} -- #{e.message}"
       court_calendar_page.update_attributes!({:parsable => false, :parsing_errors => ["#{e.class} -- #{e.message}"]})
+      next
     end
+
+    #
+    # PAGE HEADER
+    #
+
+    court_calendar_page_header = UtahCourtCalendarPageHeader.where({
+      :utah_court_calendar_page_id => court_calendar_page.id
+    }).first_or_create!
+    rows = page_content.split("\n").map{|row| row.strip } - [""]
+    jurisdiction = rows.first
+    if page_content.scan("Nothing to Report: ").any?
+      binding.pry
+      calendar_start_date = Date.parse("2014-01-01")
+      calendar_end_date = Date.parse("2014-12-25")
+      court_date_range = (calendar_start_date..calendar_end_date)
+      court_dates = court_date_range.to_a
+      judge = "ALL"
+    else
+      month = Date::MONTHNAMES.compact.map{|month| rows[1][month] }.compact.first #> "February"
+      month_index = rows[1].index(month) #>  64
+      court_date_string = rows[1].slice(month_index.. rows[1].length).strip #> "February 22, 2016"
+      court_date = Date.strptime(court_date_string, "%B %d, %Y")
+      court_dates = [court_date.to_s]
+      judge = rows[1].slice(0..month_index - 1).strip #> "GLEN R DAWSON"
+    end
+    court_calendar_page_header.update_attributes!({
+      :jurisdiction => jurisdiction,
+      :judge => judge,
+      :court_dates => court_dates
+    })
+
+    #
+    # PAGE EVENTS
+    #
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     #binding.pry
