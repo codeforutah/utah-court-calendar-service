@@ -43,6 +43,7 @@ class JusticeCourt < UtahCourt ; end
 class UtahCourtCalendar < ActiveRecord::Base
   belongs_to :utah_court, :inverse_of => :utah_court_calendars
   has_many :utah_court_calendar_pages, :inverse_of => :utah_court_calendar
+  has_many :utah_court_calendar_events, :inverse_of => :utah_court_calendar
 
   serialize(:parsing_errors, Array)
 
@@ -66,8 +67,12 @@ end
 
 class UtahCourtCalendarPageHeader < ActiveRecord::Base
   belongs_to :utah_court_calendar_page, :inverse_of => :utah_court_calendar_page_header
-  serialize(:court_dates, Array)
 end
 
 class UtahCourtCalendarEvent < ActiveRecord::Base
+  belongs_to :utah_court_calendar, :inverse_of => :utah_court_calendar_events
+
+  serialize(:defendant_aliases, Array)
+  serialize(:charges, Array)
+  serialize(:page_numbers, Array)
 end
