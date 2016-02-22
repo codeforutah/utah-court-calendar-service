@@ -183,10 +183,10 @@ UtahCourt.extractable.each do |court|
         :case_type => case_type,
 
         :prosecution => representations.first.try(:[], 0),
-        :prosecuting_attorney => representations.try(:[], 1),
+        :prosecuting_attorney => representations.first.try(:[], 1),
         :prosecuting_agency_number => prosecuting_agency_number,
         :defendant => representations.last.try(:[], 0),
-        :defense_attorney => representations.try(:[], 1),
+        :defense_attorney => representations.last.try(:[], 1),
 
         #:defendant_aliases => [], #TODO
         :defendant_offender_tracking_number => otn,

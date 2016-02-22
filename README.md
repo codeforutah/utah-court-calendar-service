@@ -65,6 +65,12 @@ ruby script/extract_utah_courts.rb
 ruby script/extract_utah_court_calendars.rb
 ````
 
+Generate static API data.
+
+```` sh
+ruby script/generate_api_data.rb
+````
+
 Backup database.
 
 ```` sh
