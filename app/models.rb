@@ -54,12 +54,31 @@ class UtahCourtCalendar < ActiveRecord::Base
   def inspect
     "#{utah_court.name} #{utah_court.type.titlecase} -- #{url} -- #{page_count}"
   end
+
+  def pages
+    utah_court_calendar_pages
+  end
+
+  def events
+    utah_court_calendar_events
+  end
 end
 
 class UtahCourtCalendarPage < ActiveRecord::Base
   belongs_to :utah_court_calendar, :inverse_of => :utah_court_calendar_pages
   has_one :utah_court_calendar_page_header, :inverse_of => :utah_court_calendar_page
 
+  def calendar
+    utah_court_calendar
+  end
+
+  def cal
+    utah_court_calendar
+  end
+
+  def inspect
+    "#{utah_court_calendar.url} -- PAGE #{number}"
+  end
   #def parsable?
   #  parsable
   #end

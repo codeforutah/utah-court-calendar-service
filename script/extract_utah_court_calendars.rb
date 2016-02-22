@@ -105,10 +105,10 @@ UtahCourt.extractable.each do |court|
       case_number = event_ids_row.last.split(" ").first(2).join(" ") #> "BOU 151800323"
       case_type = event_ids_row.last.split(" ").last(2).join(" ") #> "Other Misdemeanor"
       if event_ids_row.include?(@hearing_time)
-        binding.pry unless event_ids_row.count == 3
+        puts "  + EXPECTING 3 EVENT IDS -- PAGE #{court_calendar_page.number}" unless event_ids_row.count == 3
         hearing_type = event_ids_row[1] #> "PRETRIAL CONFERENCE"
       else
-        binding.pry unless event_ids_row.count == 2
+        puts "  + EXPECTING 2 EVENT IDS -- PAGE #{court_calendar_page.number}" unless event_ids_row.count == 2
         hearing_type = event_ids_row[0] #> "PRETRIAL CONFERENCE"
       end
 
@@ -117,8 +117,12 @@ UtahCourt.extractable.each do |court|
 
       defender_ids_row = rows.find{|row| row.include?("OTN:") && row.include?("DOB:")}
       unless defender_ids_row.nil?
-        dob_string = defender_ids_row.split("DOB: ").last.strip #> "02/28/1978"
-        dob = Date.strptime(dob_string, "%m/%d/%Y")
+        dob_string = defender_ids_row.partition("DOB: ").last.strip #> "02/28/1978"
+        begin
+          dob = Date.try(:strptime, dob_string, "%m/%d/%Y")
+        rescue => e
+          puts "  + MISSING DATE OF BIRTH -- PAGE #{court_calendar_page.number}"
+        end
         otn = defender_ids_row.split("DOB: ").first.gsub("OTN:","").strip
         otn = nil if otn == ""
       end
@@ -127,14 +131,13 @@ UtahCourt.extractable.each do |court|
       case
       when citation_row && citation_row.include?("SHERIFF #:")
         citation_number = citation_row.split("SHERIFF #:").select{|str| str.include?("CITATION #:")}.first.gsub("CITATION #:","").strip
-      when citation_row && citation_row.include?("SHERI>F")
-        citation_number = citation_row.split("SHERI>F").select{|str| str.include?("CITATION #:")}.first.gsub("CITATION #:","").strip
-      when citation_row && citation_row.include?("S>ERIFF")
-        citation_number = citation_row.split("S>ERIFF").select{|str| str.include?("CITATION #:")}.first.gsub("CITATION #:","").strip
+      #when citation_row && citation_row.include?("SHERI>F")
+      #  citation_number = citation_row.split("SHERI>F").select{|str| str.include?("CITATION #:")}.first.gsub("CITATION #:","").strip
+      #when citation_row && citation_row.include?("S>ERIFF")
+      #  citation_number = citation_row.split("S>ERIFF").select{|str| str.include?("CITATION #:")}.first.gsub("CITATION #:","").strip
       when citation_row
-        puts "UNEXPECTED CITATION CONTENT"
-        binding.pry
-    end
+        puts "  + UNEXPECTED CITATION CONTENT PAGE #{court_calendar_page.number}"
+      end
 
       so_row = rows.find{|row| row.include?("SHERIFF #:")}
       case
@@ -142,8 +145,7 @@ UtahCourt.extractable.each do |court|
         so_number = so_row.split("SHERIFF #:").last.split("LEA #:").first.strip
         so_number = nil if so_number == ""
       when so_row
-        puts "UNEXPECTED S.O. CONTENT"
-        binding.pry
+        puts "  + UNEXPECTED S.O. CONTENT PAGE #{court_calendar_page.number}"
       end
 
       lea_row = rows.find{|row| row.include?("LEA #:")}
@@ -165,29 +167,28 @@ UtahCourt.extractable.each do |court|
       small_claims_amount_row = rows.find{|row| row.include?("Amount In Controversy")}
       small_claims_amount = small_claims_amount_row.partition("Amount In Controversy").last.gsub("<","").strip unless small_claims_amount_row.nil?
 
-      calendar_event = UtahCourtCalendarEvent.where({
+      court_calendar_event = UtahCourtCalendarEvent.where({
         :utah_court_calendar_id => court_calendar.id,
-        :case_number => case_number
-      }).first_or_create!
-      calendar_event.update_attributes!({
+
         :court_room => court_room,
         :date => court_date,
         :time => @hearing_time,
 
         :hearing_type => hearing_type,
+        :case_number => case_number,
         :case_type => case_type,
 
-        :prosecution => representations.first[0],
-        :prosecuting_attorney => representations.first[1],
+        :prosecution => representations.first.try(:[], 0),
+        :prosecuting_attorney => representations.try(:[], 1),
         :prosecuting_agency_number => prosecuting_agency_number,
-        :defendant => representations.last[0],
-        :defense_attorney => representations.last[1],
+        :defendant => representations.last.try(:[], 0),
+        :defense_attorney => representations.try(:[], 1),
 
-        :defendant_aliases => [], #TODO
+        #:defendant_aliases => [], #TODO
         :defendant_offender_tracking_number => otn,
         :defendant_date_of_birth => dob,
 
-        :charges => [], #TODO
+        #:charges => [], #TODO
         :citation_number => citation_number,
         :sheriff_number => so_number,
         :law_enforcement_agency_number => lea_number,
@@ -195,11 +196,30 @@ UtahCourt.extractable.each do |court|
         :case_efiled => case_efiled,
         :domestic_violence => domestic_violence,
         :warrant_outstanding => warrant_outstanding,
-        :small_claims_amount => small_claims_amount,
+        :small_claims_amount => small_claims_amount #,
 
-        :page_numbers => [court_calendar_page.number]
-      })
+        #:page_numbers => [court_calendar_page.number]
+      }).first_or_create!
     end # events.each do |event|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 =begin
 

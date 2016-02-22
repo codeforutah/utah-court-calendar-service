@@ -4,13 +4,13 @@ class CreateUtahCourtCalendarEvents < ActiveRecord::Migration
   def change
     create_table :utah_court_calendar_events do |t|
       t.integer :utah_court_calendar_id, :null => false
-      t.string :case_number, :null => false
 
       t.string :court_room
       t.date :date
       t.string :time
 
       t.string :hearing_type
+      t.string :case_number
       t.string :case_type
 
       t.string :prosecution
@@ -40,7 +40,9 @@ class CreateUtahCourtCalendarEvents < ActiveRecord::Migration
 
     add_index :utah_court_calendar_events, :utah_court_calendar_id
     add_index :utah_court_calendar_events, :case_number
-    add_index :utah_court_calendar_events, [:utah_court_calendar_id, :case_number], :unique => true, :name => "ucce_composite"
+    add_index :utah_court_calendar_events, :citation_number
+    add_index :utah_court_calendar_events, :sheriff_number
+    add_index :utah_court_calendar_events, :law_enforcement_agency_number, :name => "lea_index"
   end
 end
 

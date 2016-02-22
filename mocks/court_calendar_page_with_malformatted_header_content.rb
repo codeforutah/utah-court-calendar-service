@@ -16,5 +16,10 @@
     "MA - OBSTRUCTION OF JUSTICE                        - 09/01/13",
     "CITATION #: V104177050   SHERIFF #:             LEA #: 2013-003213",
     ">      NO OTN NUMBER       <"
+  ],
+
+  :rows_c => [
+    "PROSECUTING AGENCY NUMBER: 150>0674 CASE EFILED   <",
+    ">   WARRANT OUTSTANDING    <"
   ]
 }
