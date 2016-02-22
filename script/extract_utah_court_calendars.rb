@@ -120,8 +120,12 @@ UtahCourt.extractable.each do |court|
         dob_string = defender_ids_row.partition("DOB: ").last.strip #> "02/28/1978"
         begin
           dob = Date.try(:strptime, dob_string, "%m/%d/%Y")
+          if dob.year.to_s.length > 4
+            dob = nil
+            raise
+          end
         rescue => e
-          puts "  + MISSING DATE OF BIRTH -- PAGE #{court_calendar_page.number}"
+          puts "  + UNEXPECTED DATE OF BIRTH -- PAGE #{court_calendar_page.number}"
         end
         otn = defender_ids_row.split("DOB: ").first.gsub("OTN:","").strip
         otn = nil if otn == ""
