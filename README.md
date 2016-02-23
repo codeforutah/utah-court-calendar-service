@@ -1,5 +1,28 @@
 # Utah Court Citation Service
 
+## Usage
+
+Visit production application at https://utah-court-calendar-service.herokuapp.com/.
+
+Request data from the API.
+
+### API
+
+#### Event Search
+
+Responds with one or more events which match the search parameters.
+
+##### Endpoint
+
+`GET /api/v0/event-search.json`
+
+##### Parameters
+
+Search for events matching a given case number (e.g. `"SLC 161901292"`).
+
+`GET /api/v0/event-search.json?case_number=SLC%20161901292`
+
+
 ## Installation
 
 Download source code and install package dependencies.

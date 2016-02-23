@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'welcome#index'
 
+  namespace :api do
+    namespace :v0 do
+      get 'event-search' => 'api#event_search'
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
