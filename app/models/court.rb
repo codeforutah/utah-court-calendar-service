@@ -4,6 +4,10 @@ class Court < ActiveRecord::Base
   def self.salt_lake
     where("name LIKE '%Salt Lake%'")
   end
+
+  def title
+    "#{name} #{type.titlecase}"
+  end
 end
 class DistrictCourt < Court ; end
 class JusticeCourt < Court ; end
