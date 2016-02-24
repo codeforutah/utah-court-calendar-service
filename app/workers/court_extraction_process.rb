@@ -31,7 +31,7 @@ class CourtExtractionProcess
     raise StandardError.new("INVALID COURT TYPE: '#{court_type}'") unless COURT_TYPES.include?(court_type)
     court = Court.where({:type => court_type, :name => list_item.text}).first_or_create!
     court.update_attributes!({:calendar_url => parse_url(list_item)})
-    pp court.inspect
+    puts court.inspect
     return court
   end
 

@@ -20,7 +20,7 @@ class CountyExtractionProcess
         :fips_class => row[4]
       })
 
-      pp county
+      puts county
     end
   end
 end
