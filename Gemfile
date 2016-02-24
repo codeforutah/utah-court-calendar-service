@@ -41,3 +41,4 @@ group :production do
 end
 
 gem 'httparty'
+gem 'nokogiri'

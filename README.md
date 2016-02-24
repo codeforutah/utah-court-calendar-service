@@ -54,6 +54,6 @@ Extract data.
 
 ```` sh
 bundle exec rake extract:counties
-#bundle exec rake extract:courts
+bundle exec rake extract:courts
 #bundle exec rake extract:court_calendars
 ````

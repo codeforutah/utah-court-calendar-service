@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224002452) do
+ActiveRecord::Schema.define(version: 20160224003705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,5 +30,17 @@ ActiveRecord::Schema.define(version: 20160224002452) do
   add_index "counties", ["county_name"], name: "index_counties_on_county_name", using: :btree
   add_index "counties", ["state_fips"], name: "index_counties_on_state_fips", using: :btree
   add_index "counties", ["state_postal"], name: "index_counties_on_state_postal", using: :btree
+
+  create_table "courts", force: :cascade do |t|
+    t.string   "type",         null: false
+    t.string   "name",         null: false
+    t.text     "calendar_url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "courts", ["name"], name: "index_courts_on_name", using: :btree
+  add_index "courts", ["type", "name"], name: "index_courts_on_type_and_name", unique: true, using: :btree
+  add_index "courts", ["type"], name: "index_courts_on_type", using: :btree
 
 end
