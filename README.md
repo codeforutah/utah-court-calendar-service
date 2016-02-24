@@ -10,7 +10,7 @@ Request data from the API.
 
 #### Event Search
 
-Responds with one or more events which match the search parameters.
+Responds with one or more events which match ALL search parameters.
 
 ##### Endpoint
 
@@ -24,7 +24,7 @@ Search for events matching a given case number (e.g. `"SLC 161901292"`).
 
 Search for events matching a given defendant name (e.g. `"MARTINEZ"`).
 
-`GET /api/v0/event-search.json?`
+`GET /api/v0/event-search.json?defendant_name=MARTINEZ`
 
 Search for events matching ALL search parameters.
 
@@ -33,6 +33,12 @@ Search for events matching ALL search parameters.
 `GET /api/v0/event-search.json?case_number=SLC%20161901292&defendant_name=JONES`
 
 ## Contributing
+
+### Prerequisites
+
+[Install](http://data-creative.info/process-documentation/2015/07/18/how-to-set-up-a-mac-development-environment.html#ruby) ruby and bundler.
+
+[Install](http://data-creative.info/process-documentation/2015/07/18/how-to-set-up-a-mac-development-environment.html#postgresql) postgresql.
 
 Download source code and install package dependencies.
 

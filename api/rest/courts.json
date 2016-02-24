@@ -1,0 +1,32 @@
+[
+  {
+    "name":"Salt Lake County Justice Court",
+    "address":"2001 S State St #4200, Salt Lake City, UT 84190",
+    "phone":"(801) 468-3430",
+    "lat":"40.727393",
+    "lon":"-111.887351",
+    "rooms":[
+      {"name":"1A", "arrival_instructions":"enter through the metal detector, stay on the first floor, find the west hallway, and find the room number above the door."},
+      {"name":"1B", "arrival_instructions":"enter through the metal detector, stay on the first floor, find the west hallway, and find the room number above the door."},
+      {"name":"1C", "arrival_instructions":"enter through the metal detector, stay on the first floor, find the west hallway, and find the room number above the door."},
+      {"name":"2A", "arrival_instructions":"enter through the metal detector, go up the stairs or elevator to the second floor, find the west hallway, and find the room number above the door."},
+      {"name":"Main Courtroom", "arrival_instructions":"enter through the metal detector, go up the stairs or elevator to the second floor, find the west hallway, and find the room number above the door."},
+      {"name":"200", "arrival_instructions":"enter through the metal detector, go up the stairs or elevator to the second floor, find the west hallway, and find the room number above the door."},
+      {"name":"801", "arrival_instructions":"enter through the metal detector, go up the stairs or elevator to the eighth floor, find the west hallway, and find the room number above the door."},
+    ]
+  },
+  {
+    "name":"Salt Lake County Probation Services",
+    "address":"145 1300 S #501, Salt Lake City, UT 84115",
+    "phone":"(385) 468-3500",
+    "lat":"40.742347",
+    "lon":"-111.887698",
+    "rooms":[
+      {"name":"114", "arrival_instructions":"enter the waiting room on the first floor, sign-in with the receptionist, and wait for your name to be called."},
+      {"name":"115", "arrival_instructions":"enter the waiting room on the first floor, sign-in with the receptionist, and wait for your name to be called."},
+      {"name":"116", "arrival_instructions":"enter the waiting room on the first floor, sign-in with the receptionist, and wait for your name to be called."},
+      {"name":"245", "arrival_instructions":"enter the waiting room on the first floor, sign-in with the receptionist, and wait for your name to be called."},
+      {"name":"249", "arrival_instructions":"enter the waiting room on the first floor, sign-in with the receptionist, and wait for your name to be called."},
+    ]
+  },
+]
