@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224003705) do
+ActiveRecord::Schema.define(version: 20160224010357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,77 @@ ActiveRecord::Schema.define(version: 20160224003705) do
   add_index "counties", ["county_name"], name: "index_counties_on_county_name", using: :btree
   add_index "counties", ["state_fips"], name: "index_counties_on_state_fips", using: :btree
   add_index "counties", ["state_postal"], name: "index_counties_on_state_postal", using: :btree
+
+  create_table "court_calendar_events", force: :cascade do |t|
+    t.integer  "court_calendar_id",                  null: false
+    t.string   "court_room"
+    t.date     "date"
+    t.string   "time"
+    t.string   "hearing_type"
+    t.string   "case_number"
+    t.string   "case_type"
+    t.string   "prosecution"
+    t.string   "prosecuting_attorney"
+    t.string   "prosecuting_agency_number"
+    t.string   "defendant"
+    t.string   "defense_attorney"
+    t.text     "defendant_aliases"
+    t.string   "defendant_offender_tracking_number"
+    t.date     "defendant_date_of_birth"
+    t.text     "charges"
+    t.string   "citation_number"
+    t.string   "sheriff_number"
+    t.string   "law_enforcement_agency_number"
+    t.boolean  "case_efiled"
+    t.boolean  "domestic_violence"
+    t.boolean  "warrant_outstanding"
+    t.string   "small_claims_amount"
+    t.text     "page_numbers"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "court_calendar_events", ["case_number"], name: "index_court_calendar_events_on_case_number", using: :btree
+  add_index "court_calendar_events", ["citation_number"], name: "index_court_calendar_events_on_citation_number", using: :btree
+  add_index "court_calendar_events", ["court_calendar_id"], name: "index_court_calendar_events_on_court_calendar_id", using: :btree
+  add_index "court_calendar_events", ["law_enforcement_agency_number"], name: "events_lea_index", using: :btree
+  add_index "court_calendar_events", ["sheriff_number"], name: "index_court_calendar_events_on_sheriff_number", using: :btree
+
+  create_table "court_calendar_page_headers", force: :cascade do |t|
+    t.integer  "court_calendar_page_id", null: false
+    t.string   "jurisdiction"
+    t.string   "judge"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "court_calendar_page_headers", ["court_calendar_page_id"], name: "headers_page_fk", using: :btree
+
+  create_table "court_calendar_pages", force: :cascade do |t|
+    t.integer  "court_calendar_id", null: false
+    t.integer  "number",            null: false
+    t.boolean  "parsable"
+    t.text     "parsing_errors"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "court_calendar_pages", ["court_calendar_id", "number"], name: "pages_composite_key", unique: true, using: :btree
+  add_index "court_calendar_pages", ["court_calendar_id"], name: "index_court_calendar_pages_on_court_calendar_id", using: :btree
+
+  create_table "court_calendars", force: :cascade do |t|
+    t.integer  "court_id",     null: false
+    t.text     "url",          null: false
+    t.datetime "created_at"
+    t.datetime "modified_at",  null: false
+    t.datetime "requested_at"
+    t.integer  "page_count"
+  end
+
+  add_index "court_calendars", ["court_id", "url", "modified_at"], name: "calendars_composite_key", unique: true, using: :btree
+  add_index "court_calendars", ["court_id"], name: "index_court_calendars_on_court_id", using: :btree
 
   create_table "courts", force: :cascade do |t|
     t.string   "type",         null: false

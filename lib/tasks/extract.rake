@@ -9,8 +9,8 @@ namespace :extract do
     CourtExtractionProcess.perform
   end
 
-  #desc "Extract a list of upcoming court hearings."
-  #task :court_calendars => :courts do
-  #  CourtCalendarExtractionProcess.perform
-  #end
+  desc "Extract a list of upcoming court hearings."
+  task :court_calendars => :courts do
+    CourtCalendarExtractionProcess.perform
+  end
 end

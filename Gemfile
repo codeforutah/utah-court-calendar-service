@@ -42,3 +42,4 @@ end
 
 gem 'httparty'
 gem 'nokogiri'
+gem 'pdf-reader'
