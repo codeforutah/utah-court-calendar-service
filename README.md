@@ -22,6 +22,16 @@ Search for events matching a given case number (e.g. `"SLC 161901292"`).
 
 `GET /api/v0/event-search.json?case_number=SLC%20161901292`
 
+Search for events matching a given defendant name (e.g. `"MARTINEZ"`).
+
+`GET /api/v0/event-search.json?`
+
+Search for events matching ALL search parameters.
+
+`GET /api/v0/event-search.json?case_number=SLC%20161901292&defendant_name=MARTINEZ`
+
+`GET /api/v0/event-search.json?case_number=SLC%20161901292&defendant_name=JONES`
+
 ## Contributing
 
 Download source code and install package dependencies.
