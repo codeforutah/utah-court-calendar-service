@@ -1,4 +1,4 @@
-# Utah Court Citation Service
+# Utah Court Calendar Service
 
 ## Usage
 
@@ -12,11 +12,9 @@ Request data from the API.
 
 Responds with one or more events which match ALL search parameters.
 
-##### Endpoint
-
 `GET /api/v0/event-search.json`
 
-##### Parameters
+##### Search Parameters
 
 Search for events matching a given case number (e.g. `"SLC 161901292"`).
 
@@ -63,12 +61,23 @@ Create and migrate database.
 ```` sh
 bundle exec rake db:create
 bundle exec rake db:migrate
+bundle exec rake db:seed
 ````
 
 Extract data.
 
 ```` sh
-bundle exec rake extract:counties
+#bundle exec rake extract:counties
 bundle exec rake extract:courts
 bundle exec rake extract:court_calendars
+````
+
+## Deploying
+
+```` sh
+# from master:
+git push heroku master
+
+# from a branch:
+git push heroku mybranch:master
 ````

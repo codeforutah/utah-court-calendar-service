@@ -11,7 +11,7 @@ class CourtCalendarEvent < ActiveRecord::Base
   delegate :url, :to => :calendar, :prefix => true
   delegate :modified_on, :to => :calendar, :prefix => true
 
-  def self.quarantined
+  def self.nonproblematic
     where("court_room IS NOT NULL")
     .where("prosecuting_attorney NOT LIKE '%[%'")
     .where("defense_attorney NOT LIKE '%[%'")
@@ -29,6 +29,7 @@ class CourtCalendarEvent < ActiveRecord::Base
       :calendar_url => calendar_url,
       :calendar_modified_on => calendar_modified_on,
       #:calendar_page_count => calendar_page_count,
+      #:calendar_page_number => calendar_page_number,
       :court_type => court_type,
       :court_name => court_name,
       :court_title => court_title,
@@ -49,7 +50,7 @@ class CourtCalendarEvent < ActiveRecord::Base
       :sheriff_number => sheriff_number,
       :law_enforcement_agency_number => law_enforcement_agency_number,
       :case_efiled => case_efiled,
-      :domestic_violence => domestic_violence,
+      #:domestic_violence => domestic_violence,
       :warrant_outstanding => warrant_outstanding,
       :small_claims_amount => small_claims_amount
     }
