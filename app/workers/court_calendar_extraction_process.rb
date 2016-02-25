@@ -231,6 +231,7 @@ class CourtCalendarExtractionProcess
 
           court_calendar_event = CourtCalendarEvent.where({
             :court_calendar_id => court_calendar.id,
+            :first_page_id => court_calendar_page.id,
 
             :court_room => court_room,
             :date => court_date,

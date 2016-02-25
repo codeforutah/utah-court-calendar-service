@@ -1,5 +1,6 @@
 class CourtCalendarEvent < ActiveRecord::Base
   belongs_to :calendar, :inverse_of => :events, :class_name => CourtCalendar, :foreign_key => :court_calendar_id
+  belongs_to :first_page, :inverse_of => :events, :class_name => CourtCalendarPage
 
   serialize(:defendant_aliases, Array)
   serialize(:charges, Array)
@@ -8,8 +9,11 @@ class CourtCalendarEvent < ActiveRecord::Base
   delegate :court_name, :to => :calendar
   delegate :court_title, :to => :calendar
   delegate :court_type, :to => :calendar
+  delegate :page_count, :to => :calendar, :prefix => true
   delegate :url, :to => :calendar, :prefix => true
+  delegate :modified_at, :to => :calendar, :prefix => true
   delegate :modified_on, :to => :calendar, :prefix => true
+  delegate :number, :to => :first_page, :prefix => true
 
   def self.nonproblematic
     where("court_room IS NOT NULL")
@@ -27,9 +31,9 @@ class CourtCalendarEvent < ActiveRecord::Base
   def search_result
     {
       :calendar_url => calendar_url,
-      :calendar_modified_on => calendar_modified_on,
-      #:calendar_page_count => calendar_page_count,
-      #:calendar_page_number => calendar_page_number,
+      :calendar_page_number => first_page_number,
+      :calendar_page_count => calendar_page_count,
+      :calendar_modified_at => calendar_modified_at,
       :court_type => court_type,
       :court_name => court_name,
       :court_title => court_title,

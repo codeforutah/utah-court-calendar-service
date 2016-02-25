@@ -2,6 +2,7 @@ class CreateCourtCalendarEvents < ActiveRecord::Migration
   def change
     create_table :court_calendar_events do |t|
       t.integer :court_calendar_id, :null => false
+      t.integer :first_page_id, :null => false
 
       t.string :court_room
       t.date :date

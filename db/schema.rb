@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160224010357) do
 
   create_table "court_calendar_events", force: :cascade do |t|
     t.integer  "court_calendar_id",                  null: false
+    t.integer  "first_page_id",                      null: false
     t.string   "court_room"
     t.date     "date"
     t.string   "time"
