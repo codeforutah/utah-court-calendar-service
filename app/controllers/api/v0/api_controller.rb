@@ -16,14 +16,15 @@ class Api::V0::ApiController < ApplicationController
     results = CourtCalendarEvent.nonproblematic if case_number || defendant_name
     results = results.where(:case_number => case_number) if case_number
     results = results.where("defendant LIKE ?", "%#{defendant_name}%") if defendant_name
-    results = results.map{|event| event.search_result} if results.any?
+    results = results.any? ? results.map{|event| event.search_result} : []
 
     @response = {
       :request => {
         :url => request.url,
         :params => search_params,
         :received_at => received_at,
-        :processed_at => Time.zone.now
+        :processed_at => Time.zone.now,
+        :results_count => results.count
       },
       :results => results
     }
