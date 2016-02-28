@@ -1,5 +1,12 @@
-<h1>Utah Court Calendar Service</h1>
-
-<p style="margin-top:2em;">
-  <a href="https://github.com/OpenSaltLake/utah-court-calendar-service">source</a>
-</p>
+<% unless developer_account_signed_in? %>
+  <p>
+    Only registered Developer Accounts with a valid API Key may access the API.
+    <%= link_to "Sign Up", new_developer_account_registration_path %> |
+    <%= link_to "Sign In", new_developer_account_session_path %>
+  </p>
+<% else %>
+  <p>
+    <%= "My Developer Account" %> |
+    <%= link_to "Log Out", destroy_developer_account_session_path, :method => :delete %>
+  </p>
+<% end %>

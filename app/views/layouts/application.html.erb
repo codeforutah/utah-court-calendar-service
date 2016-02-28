@@ -8,7 +8,19 @@
 </head>
 <body>
 
-<%= yield %>
+  <header>
+    <h1>Utah Court Calendar Service</h1>
+  </header>
 
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <%= yield %>
+
+  <footer style="margin-top:2em;">
+    <p>
+      <a href="https://github.com/OpenSaltLake/utah-court-calendar-service">source</a>
+    </p>
+  </footer>
 </body>
 </html>

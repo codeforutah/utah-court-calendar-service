@@ -61,3 +61,7 @@
  + http://ruby-doc.org/stdlib-1.9.3/libdoc/securerandom/rdoc/SecureRandom.html
  + http://blog.honeybadger.io/ruby-custom-exceptions/
  + http://stackoverflow.com/questions/88311/how-best-to-generate-a-random-string-in-ruby
+ + https://www.digitalocean.com/community/tutorials/how-to-configure-devise-and-omniauth-for-your-rails-application
+ + https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
+ + https://github.com/plataformatec/devise#getting-started
+ + https://github.com/plataformatec/devise/wiki/How-To:-Add-sign_in,-sign_out,-and-sign_up-links-to-your-layout-template
