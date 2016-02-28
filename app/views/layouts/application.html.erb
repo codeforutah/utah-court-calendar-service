@@ -8,12 +8,24 @@
 </head>
 <body>
 
-  <header>
-    <h1>Utah Court Calendar Service</h1>
-  </header>
-
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+
+  <header>
+    <h1><%= link_to "Utah Court Calendar Service", root_path %></h1>
+
+    <% unless developer_account_signed_in? %>
+    <p>
+      Only registered Developer Accounts with a valid API Key may access the API.
+      <%= link_to "Sign Up", new_developer_account_registration_path %> |
+      <%= link_to "Sign In", new_developer_account_session_path %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to "Log Out", destroy_developer_account_session_path, :method => :delete %>
+    </p>
+    <% end %>
+  </header>
 
   <%= yield %>
 

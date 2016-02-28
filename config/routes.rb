@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :developer_accounts
 
-  root 'welcome#index'
+  root 'api_keys#show'
 
   namespace :api do
     namespace :v0 do
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   get 'developer_accounts/api_key/regenerate' => 'api_keys#regenerate', :as => 'regenerate_api_key'
+  get 'developer_accounts/api_key' => 'api_keys#show', :as => 'api_key'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
