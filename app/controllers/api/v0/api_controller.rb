@@ -1,5 +1,5 @@
 class Api::V0::ApiController < Api::ApiController
-  RECOGNIZED_SEARCH_PARAMETERS = ["api_key","case_number","defendant_name"]
+  RECOGNIZED_SEARCH_PARAMETERS = ["api_key","case_number","defendant_name", "court_room" , "court_date" , "defendant_otn" , "defendant_dob" , "defendant_so" , "defendant_lea" , "citation_number" ]
 
   # GET /api/v0/event-search.json
   # GET /api/v0/event-search.json?case_number=SLC%20161901292
@@ -12,8 +12,16 @@ class Api::V0::ApiController < Api::ApiController
     results = [] # should default to empty
     search_params = params.reject{|k,v| ["controller","format","action"].include?(k) }
     api_key = params["api_key"]
-    case_number = params["case_number"]
+    case_number = params["case_number"].try(:upcase)
     defendant_name = params["defendant_name"].try(:upcase)
+    #court_title = params["court_title"]
+    court_room = params["court_room"].try(:upcase)
+    court_date = params["court_date"] #todo: add error unless in "yyyy-mm-dd" format
+    defendant_otn = params["defendant_otn"].try(:upcase)
+    defendant_dob = params["defendant_dob"] #todo: add error unless in "yyyy-mm-dd" format
+    defendant_so = params["defendant_so"].try(:upcase)
+    defendant_lea = params["defendant_lea"].try(:upcase)
+    citation_number = params["citation_number"].try(:upcase)
 
     unrecognized_search_params = search_params.keys - RECOGNIZED_SEARCH_PARAMETERS
     unrecognized_search_params.each do |unrecognized_search_param|
@@ -21,9 +29,17 @@ class Api::V0::ApiController < Api::ApiController
     end
 
     if DeveloperAccount.valid_api_keys.include?(api_key)
-      results = CourtCalendarEvent.nonproblematic if case_number || defendant_name
-      results = results.where(:case_number => case_number) if case_number
-      results = results.where("defendant LIKE ?", "%#{defendant_name}%") if defendant_name
+      results = CourtCalendarEvent.nonproblematic if case_number || defendant_name || court_room || court_date || defendant_otn || defendant_dob || defendant_so || defendant_lea || citation_number
+      results = results.where("UPPER(case_number) LIKE ?", "%#{case_number}%") if case_number
+      results = results.where("UPPER(defendant) LIKE ?", "%#{defendant_name}%") if defendant_name
+      #results = results.where("UPPER(____) LIKE ?", "%#{______}%") if court_title
+      results = results.where("UPPER(court_room) LIKE ?", "%#{court_room}%") if court_room
+      results = results.where(:date => court_date) if court_date
+      results = results.where("UPPER(defendant_offender_tracking_number) LIKE ?", "%#{defendant_otn}%") if defendant_otn
+      results = results.where(:defendant_date_of_birth => defendant_dob) if defendant_dob
+      results = results.where("UPPER(sheriff_number) LIKE ?", "%#{defendant_so}%") if defendant_so
+      results = results.where("UPPER(law_enforcement_agency_number) LIKE ?", "%#{defendant_lea}%") if defendant_lea
+      results = results.where("UPPER(citation_number) LIKE ?", "%#{citation_number}%") if citation_number
     elsif api_key
       errors << InvalidApiKeyError.new(api_key).message
     else
