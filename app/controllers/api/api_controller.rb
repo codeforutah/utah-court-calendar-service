@@ -16,7 +16,7 @@ class Api::ApiController < ApplicationController
     #
     def initialize(api_key)
       class_name = self.class.name.gsub("Api::ApiController::","")
-      msg = "#{class_name} -- #{api_key}"
+      msg = "#{class_name} -- '#{api_key}'"
       super(msg)
     end
   end

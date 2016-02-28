@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :developer_accounts
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  devise_for :developer_accounts
+
   root 'welcome#index'
 
   namespace :api do
@@ -12,6 +9,14 @@ Rails.application.routes.draw do
       get 'event-search' => 'api#event_search'
     end
   end
+
+  get 'developer_accounts/api_key/regenerate' => 'api_keys#regenerate', :as => 'regenerate_api_key'
+
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+
+  # You can have the root of your site routed with "root"
+  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

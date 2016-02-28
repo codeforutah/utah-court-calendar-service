@@ -18,10 +18,15 @@ class DeveloperAccount < ActiveRecord::Base
     revoke_api_keys
     ApiKey.generate!(id)
   end
+  alias_method :regenerate_api_key, :generate_api_key
 
   def revoke_api_keys
     api_keys.unrevoked.each do |unrevoked_api_key|
       unrevoked_api_key.revoke!
     end
+  end
+
+  def current_api_key
+    api_keys.unrevoked.order(:created_at => :desc).first.secret
   end
 end

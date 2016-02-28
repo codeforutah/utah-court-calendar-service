@@ -1,14 +1,6 @@
 class Api::V0::ApiController < Api::ApiController
   RECOGNIZED_SEARCH_PARAMETERS = ["api_key","case_number","defendant_name"]
 
-  class UnrecognizedEventSearchParameter < ApiError
-    def initialize(search_param)
-      class_name = self.class.name.gsub("Api::V0::ApiController::","")
-      msg = "#{class_name} -- #{search_param}"
-      super(msg)
-    end
-  end
-
   # GET /api/v0/event-search.json
   # GET /api/v0/event-search.json?case_number=SLC%20161901292
   # GET /api/v0/event-search.json?case_number=SLC%20161901292&defendant_name=MARTINEZ
@@ -50,6 +42,14 @@ class Api::V0::ApiController < Api::ApiController
 
     respond_to do |format|
       format.json { render json: JSON.pretty_generate(@response) }
+    end
+  end
+
+  class UnrecognizedEventSearchParameter < ApiError
+    def initialize(search_param)
+      class_name = self.class.name.gsub("Api::V0::ApiController::","")
+      msg = "#{class_name} -- '#{search_param}'"
+      super(msg)
     end
   end
 end

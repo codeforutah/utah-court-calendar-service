@@ -6,7 +6,24 @@
   </p>
 <% else %>
   <p>
-    <%= "My Developer Account" %> |
     <%= link_to "Log Out", destroy_developer_account_session_path, :method => :delete %>
   </p>
+
+  <h2>API</h2>
+
+  <p>
+    Your API Key is <code><%= @api_key %></code>.
+    <%= link_to "Regenerate it", regenerate_api_key_path %>, or
+    use it to make api calls.
+  </p>
+
+  <h3>Event Search</h3>
+  <pre>
+    <code><%= "/api/v0/event-search.json?api_key=#{@api_key}" %></code>
+    <code><%= "/api/v0/event-search.json?api_key=#{@api_key}&defendant_name=MARTINEZ" %></code>
+    <code><%= "/api/v0/event-search.json?api_key=#{@api_key}&defendant_name=martin" %></code>
+    <code><%= "/api/v0/event-search.json?api_key=#{@api_key}&case_number=SLC%20161901292" %></code>
+    <code><%= "/api/v0/event-search.json?api_key=#{@api_key}&case_number=SLC%20161901292&defendant_name=MARTINEZ" %></code>
+    <code><%= "/api/v0/event-search.json?api_key=#{@api_key}&case_number=SLC%20161901292&defendant_name=JONES" %></code>
+  </pre>
 <% end %>
