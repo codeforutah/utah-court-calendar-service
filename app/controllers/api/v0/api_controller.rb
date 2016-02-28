@@ -8,14 +8,14 @@ class Api::V0::ApiController < ApplicationController
   def event_search
     search_params = params.reject{|k,v| ["controller","format","action"].include?(k) }
     case_number = params["case_number"]
-    defendant_name = params["defendant_name"]
+    defendant_name = params["defendant_name"].try(:upcase)
 
     received_at = Time.zone.now
 
     results = [] # should default to empty
     results = CourtCalendarEvent.nonproblematic if case_number || defendant_name
     results = results.where(:case_number => case_number) if case_number
-    results = results.where("defendant LIKE ?", "%#{defendant_name}%") if defendant_name
+    results = results.where("UPPER(defendant) LIKE ?", "%#{defendant_name}%") if defendant_name
     results = results.any? ? results.map{|event| event.search_result} : []
 
     @response = {
