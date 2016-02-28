@@ -1,0 +1,17 @@
+<h2>API</h2>
+
+<p>
+  Your API Key is <code><%= @api_key %></code>.
+  <%= link_to "Regenerate it", regenerate_api_key_path %>, or
+  use it to make api calls.
+</p>
+
+<h3>Event Search</h3>
+<p>
+  GET:
+  <pre>
+    <% @request_urls.each do |request_url|%>
+    <code><%= link_to request_url, request_url %></code>
+    <% end %>
+  </pre>
+</p>
