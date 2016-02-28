@@ -28,6 +28,7 @@ gem 'yard', group: :doc # run `bundle exec yard doc` to parse comments and/or `b
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.0'
+  gem 'mailcatcher'
 end
 
 group :development do
@@ -43,3 +44,14 @@ end
 gem 'httparty'
 gem 'nokogiri'
 gem 'pdf-reader'
+
+
+
+
+
+
+
+#gem 'therubyracer'
+gem 'devise'
+#gem 'omniauth'
+#gem 'omniauth-github'
