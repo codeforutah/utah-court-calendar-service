@@ -12,7 +12,7 @@ class ApiKey < ActiveRecord::Base
   def self.generate!(developer_account_id)
     create!({
       :developer_account_id => developer_account_id,
-      :secret => "temporary-#{Time.zone.now.to_datetime.to_s}"
+      :secret => SecureRandom.urlsafe_base64
     })
   end
 
