@@ -1,11 +1,41 @@
 class Api::V0::ApiController < Api::ApiController
   RECOGNIZED_SEARCH_PARAMETERS = ["api_key","case_number","defendant_name", "court_room" , "court_date" , "defendant_otn" , "defendant_dob" , "defendant_so" , "defendant_lea" , "citation_number" ]
 
+  # Search for an event.
+  #
+  # @param [Hash] params
+  # @param [Hash] params [String] api_key The current api key which belongs to the requestor's developer account.
+  # @param [Hash] params [String] case_number The court case number.
+  # @param [Hash] params [String] defendant_name The defendant name.
+  # @param [Hash] params [String] court_room The court room name.
+  # @param [Hash] params [String] court_date The court date in YYYY-MM-DD format.
+  # @param [Hash] params [String] defendant_otn The defendant offender tracking number.
+  # @param [Hash] params [String] defendant_dob The defendant date of burth in YYYY-MM-DD format.
+  # @param [Hash] params [String] defendant_so The defendant sheriff number.
+  # @param [Hash] params [String] defendant_lea The defendant law enforcement agency number.
+  # @param [Hash] params [String] citation_number The citation number.
+  #
+  # @example
+  #
   # GET /api/v0/event-search.json
   # GET /api/v0/event-search.json?case_number=SLC%20161901292
   # GET /api/v0/event-search.json?case_number=SLC%20161901292&defendant_name=MARTINEZ
   # GET /api/v0/event-search.json?case_number=SLC%20161901292&defendant_name=JONES
   # GET /api/v0/event-search.json?defendant_name=MARTINEZ
+  # GET /api/v0/event-search.json?api_key=123abc456def
+  # GET /api/v0/event-search.json?api_key=123abc456def&defendant_name=MARTINEZ
+  # GET /api/v0/event-search.json?api_key=123abc456def&defendant_name=martin
+  # GET /api/v0/event-search.json?api_key=123abc456def&case_number=SLC%20161901292
+  # GET /api/v0/event-search.json?api_key=123abc456def&court_room=W43
+  # GET /api/v0/event-search.json?api_key=123abc456def&court_date=2016-02-25
+  # GET /api/v0/event-search.json?api_key=123abc456def&defendant_otn=43333145
+  # GET /api/v0/event-search.json?api_key=123abc456def&defendant_dob=1988-04-05
+  # GET /api/v0/event-search.json?api_key=123abc456def&defendant_so=368570
+  # GET /api/v0/event-search.json?api_key=123abc456def&defendant_lea=15-165332
+  # GET /api/v0/event-search.json?api_key=123abc456def&citation_number=49090509
+  # GET /api/v0/event-search.json?api_key=123abc456def&court_date=2016-02-25&court_room=W43
+  # GET /api/v0/event-search.json?api_key=123abc456def&case_number=SLC%20161901292&defendant_name=MARTINEZ
+  # GET /api/v0/event-search.json?api_key=123abc456def&case_number=SLC%20161901292&defendant_name=JONES
   def event_search
     received_at = Time.zone.now
     errors = []
