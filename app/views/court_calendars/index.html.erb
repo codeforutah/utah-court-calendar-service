@@ -3,8 +3,8 @@
 <div class="table-responsive">
   <table class="table">
     <tr>
-      <th>Court Title</th>
-      <th>Calendar Date</th>
+      <th>Court</th>
+      <th>Upload Date</th>
       <th>Pages</th>
       <th>Events</th>
       <th>Expected Events</th>
@@ -18,7 +18,7 @@
       <td><%= court_calendar.page_count %></td>
       <td><%= court_calendar.events_count %></td>
       <td><%= court_calendar.expected_events_count %></td>
-      <td><%= number_to_percentage(court_calendar.event_coverage_rate * 100, format: "%n%") %></td>
+      <td><%= number_to_percentage(court_calendar.event_coverage_rate * 100, format: "%n%", :precision => 2) %></td>
     </tr>
     <% end %>
   </table>

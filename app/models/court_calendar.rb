@@ -1,6 +1,6 @@
 class CourtCalendar < ActiveRecord::Base
   belongs_to :court, :inverse_of => :court_calendars
-  has_many :court_calendar_pages, :inverse_of => :court_calendar
+  has_many :pages, :inverse_of => :court_calendar, :class_name => CourtCalendarPage
   has_many :events, :inverse_of => :calendar, :class_name => CourtCalendarEvent
 
   serialize(:parsing_errors, Array)
@@ -53,10 +53,10 @@ class CourtCalendar < ActiveRecord::Base
   end
 
   def expected_events_count
-    10000
+    pages.any? ? pages.map{|page| page.expected_events_count}.compact.sum : 0
   end
 
   def event_coverage_rate
-    0.452000000
+    expected_events_count == 0 ? 1 : events_count.to_f / expected_events_count
   end
 end
