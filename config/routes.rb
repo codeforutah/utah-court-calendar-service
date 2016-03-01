@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'developer_accounts/api_key/regenerate' => 'api_keys#regenerate', :as => 'regenerate_api_key'
   get 'developer_accounts/api_key' => 'api_keys#show', :as => 'api_key'
 
+  get 'court_calendars' => 'court_calendars#index', :as => 'court_calendars'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
