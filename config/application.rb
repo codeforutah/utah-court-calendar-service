@@ -27,6 +27,7 @@ module UtahCourtCalendarService
       g.test_framework :rspec
       g.assets = false
       g.helper = false
+      g.factory_girl false
     end
   end
 end

@@ -10,7 +10,7 @@ class DeveloperAccount < ActiveRecord::Base
   after_create :generate_api_key!
   after_destroy :revoke_api_keys!
 
-  def self.valid_api_keys
+  def self.unrevoked_api_keys
     joins(:api_keys).merge(ApiKey.unrevoked).pluck(:secret).uniq.compact.sort
   end
 

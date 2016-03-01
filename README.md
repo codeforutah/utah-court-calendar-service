@@ -37,7 +37,7 @@ event_search_parameter | description | example
 `defendant_lea` | The defendant law enforcement agency number. | `15-165332`
 `citation_number` | The citation number. | `49090509`
 
-For additional documentation see the [event search method source](/app/controllers/api/v0/api_controller.rb).
+For additional documentation see the [event search method source](/app/controllers/api/v0/api_controller.rb) and [tests](/spec/controllers/api/v0/api_controller_spec.rb).
 
 ## Contributing
 

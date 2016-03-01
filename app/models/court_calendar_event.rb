@@ -30,31 +30,37 @@ class CourtCalendarEvent < ActiveRecord::Base
 
   def search_result
     {
+      :court_type => court_type,
+      :court_name => court_name,
+      :court_title => court_title,
+
       :calendar_url => calendar_url,
       :calendar_page_number => first_page_number,
       :calendar_page_count => calendar_page_count,
       :calendar_modified_at => calendar_modified_at,
-      :court_type => court_type,
-      :court_name => court_name,
-      :court_title => court_title,
+
       :court_room => court_room,
       :court_date => date,
       :court_time => time,
       :hearing_type => hearing_type,
+
       :case_number => case_number,
       :case_type => case_type,
       :prosecution => prosecution,
       :prosecuting_attorney => prosecuting_attorney,
       :prosecuting_agency_number => prosecuting_agency_number,
-      :defendant => defendant,
       :defense_attorney => defense_attorney,
+
+      :defendant => defendant,
       :defendant_offender_tracking_number => defendant_offender_tracking_number,
       :defendant_date_of_birth => defendant_date_of_birth,
+
       :citation_number => citation_number,
       :sheriff_number => sheriff_number,
       :law_enforcement_agency_number => law_enforcement_agency_number,
+
       :case_efiled => case_efiled,
-      #:domestic_violence => domestic_violence,
+      ###:domestic_violence => domestic_violence,
       :warrant_outstanding => warrant_outstanding,
       :small_claims_amount => small_claims_amount
     }

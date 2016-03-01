@@ -10,7 +10,7 @@ class Api::ApiController < ApplicationController
     end
   end
 
-  class InvalidApiKeyError < ApiKeyError
+  class UnrecognizedApiKeyError < ApiKeyError
     #
     # @param [String] api_key
     #

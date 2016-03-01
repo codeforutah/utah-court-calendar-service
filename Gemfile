@@ -29,6 +29,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.0'
   gem 'mailcatcher'
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :development do

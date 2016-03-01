@@ -65,3 +65,7 @@
  + https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
  + https://github.com/plataformatec/devise#getting-started
  + https://github.com/plataformatec/devise/wiki/How-To:-Add-sign_in,-sign_out,-and-sign_up-links-to-your-layout-template
+ + http://stackoverflow.com/a/28047750/670433
+ + https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-(and-RSpec)
+ + https://github.com/thoughtbot/factory_girl_rails
+ + http://stackoverflow.com/q/7219732/670433
