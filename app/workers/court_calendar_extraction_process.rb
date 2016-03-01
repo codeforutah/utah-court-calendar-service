@@ -29,7 +29,9 @@ class CourtCalendarExtractionProcess
   end
 
   def self.perform
-    Court.salt_lake.each do |court|
+    CourtCalendarEvent.delete_all
+
+    Court.all.each do |court|
       io = open(court.calendar_url, "rb")
       reader = PDF::Reader.new(io)
 
