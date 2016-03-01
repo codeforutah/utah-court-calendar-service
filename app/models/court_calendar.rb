@@ -71,4 +71,12 @@ class CourtCalendar < ActiveRecord::Base
   def page_parse_rate
     page_count == 0 ? 1 : parsable_page_count.to_f / page_count.to_f
   end
+
+  def parsed_event_count
+    events.any? ? events.select{|event| !event.parsing_errors? }.count : 0
+  end
+
+  def event_parse_rate
+    events_count == 0 ? 1 : parsed_event_count.to_f / events_count.to_f
+  end
 end

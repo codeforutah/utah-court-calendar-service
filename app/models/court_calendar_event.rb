@@ -28,6 +28,18 @@ class CourtCalendarEvent < ActiveRecord::Base
     .where("length(time) = 8")
   end
 
+  def parsing_errors?
+    return true if court_room.nil?
+    return true if prosecuting_attorney.try(:include?, "[")
+    return true if defense_attorney.try(:include?, "[")
+    return true if case_number.try(:include?, "ATTY")
+    return true if defendant = defense_attorney
+    return true unless time.try(:include?, "AM") || time.try(:include?, "PM")
+    return true if case_type.try(:include?, ",")
+    return true if prosecuting_agency_number.try(:include?, "CASE EFILED") || prosecuting_agency_number.try(:include?, "LEA")
+    return true unless time.try(:length) == 8
+  end
+
   def search_result
     {
       :court_type => court_type,

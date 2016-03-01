@@ -11,6 +11,8 @@
       <th>Events</th>
       <!--th>Expected events</th-->
       <th>Event coverage rate</th>
+      <th>Events parsed</th>
+      <th>Event parse rate</th>
     </tr>
 
     <% @court_calendars.each do |court_calendar| %>
@@ -23,6 +25,8 @@
       <td><%= court_calendar.events_count %></td>
       <!--td><%= court_calendar.expected_events_count %></td-->
       <td><%= number_to_percentage(court_calendar.event_coverage_rate * 100, format: "%n%", :precision => 2) %></td>
+      <td><%= court_calendar.parsed_event_count %></td>
+      <td><%= number_to_percentage(court_calendar.event_parse_rate * 100, format: "%n%", :precision => 2) %></td>
     </tr>
     <% end %>
   </table>
