@@ -51,4 +51,12 @@ class CourtCalendar < ActiveRecord::Base
   def events_count
     events.count
   end
+
+  def expected_events_count
+    10000
+  end
+
+  def event_coverage_rate
+    0.452000000
+  end
 end

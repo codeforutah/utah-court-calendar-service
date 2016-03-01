@@ -91,12 +91,13 @@ ActiveRecord::Schema.define(version: 20160228052013) do
   add_index "court_calendar_page_headers", ["court_calendar_page_id"], name: "headers_page_fk", using: :btree
 
   create_table "court_calendar_pages", force: :cascade do |t|
-    t.integer  "court_calendar_id", null: false
-    t.integer  "number",            null: false
+    t.integer  "court_calendar_id",     null: false
+    t.integer  "number",                null: false
     t.boolean  "parsable"
     t.text     "parsing_errors"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "expected_events_count"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_index "court_calendar_pages", ["court_calendar_id", "number"], name: "pages_composite_key", unique: true, using: :btree

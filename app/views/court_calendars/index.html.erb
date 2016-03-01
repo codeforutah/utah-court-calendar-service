@@ -17,8 +17,8 @@
       <td><%= court_calendar.date %></td>
       <td><%= court_calendar.page_count %></td>
       <td><%= court_calendar.events_count %></td>
-      <td><%= "TODO :-)" %></td>
-      <td><%= "TODO :-)" %></td>
+      <td><%= court_calendar.expected_events_count %></td>
+      <td><%= number_to_percentage(court_calendar.event_coverage_rate * 100, format: "%n%") %></td>
     </tr>
     <% end %>
   </table>
