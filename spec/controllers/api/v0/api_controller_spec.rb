@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-# start a local rails server before running these tests :-)
-
 RSpec.describe Api::V0::ApiController, type: :controller do
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:developer_account]
@@ -12,10 +10,6 @@ RSpec.describe Api::V0::ApiController, type: :controller do
 
   let(:recognized_key_secret){controller.current_developer_account.current_api_key}
 
-  # http://localhost:3000/api/v0/event-search.json
-  # context: api requests which do not contain a api_key url parameter
-  # response should be empty
-  # error messages should contain "MissingApiKeyError"
   context "when request does not contain an api key" do
     let(:response){
       rsp = get :event_search, {"format"=>"json"}
@@ -32,10 +26,6 @@ RSpec.describe Api::V0::ApiController, type: :controller do
     end
   end
 
-  # http://localhost:3000/api/v0/event-search.json?api_key=INVALIDSTRING
-  # context: api requests which contain an invalid api_key url parameter
-  # response should be empty
-  # error messages should contain "UnrecognizedApiKeyError -- INVALIDSTRING"
   context "when request contains an unrecognized api key" do
     let(:unrecognized_key_secret){"idksomething"}
     let(:response){
@@ -53,9 +43,6 @@ RSpec.describe Api::V0::ApiController, type: :controller do
     end
   end
 
-  # http://localhost:3000/api/v0/event-search.json?api_key=test_key
-  # context: api requests which contain a valid api_key url parameter
-  # error messages should not contain "UnrecognizedApiKeyError" or "MissingApiKeyError"
   context "when request contains a recognized, unrevoked api key" do
     let(:response){
       rsp = get :event_search, {"format"=>"json", "api_key"=>recognized_key_secret}
@@ -68,10 +55,6 @@ RSpec.describe Api::V0::ApiController, type: :controller do
     end
   end
 
-  # http://localhost:3000/api/v0/event-search.json?api_key=test_key&def_name=MARTINEZ
-  # context: api requests which contain an unexpected search parameter (e.g. "def_name")
-  # response should be empty
-  # error messages should contain "UnrecognizedEventSearchParameter -- def_name"
   context "when request contains an unrecognized search parameter" do
     let(:response){
       rsp = get :event_search, {
