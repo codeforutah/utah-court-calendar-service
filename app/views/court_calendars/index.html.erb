@@ -9,7 +9,7 @@
       <!--th>Unparsable pages</th-->
       <th>Page parse rate</th>
       <th>Events</th>
-      <!--th>Expected events</th-->
+      <th>Events expected</th>
       <th>Event coverage rate</th>
       <th>Events parsed</th>
       <th>Event parse rate</th>
@@ -23,7 +23,7 @@
       <!--td><%= court_calendar.unparsable_page_count %></td-->
       <td><%= number_to_percentage(court_calendar.page_parse_rate * 100, format: "%n%", :precision => 2) %></td>
       <td><%= court_calendar.events_count %></td>
-      <!--td><%= court_calendar.expected_events_count %></td-->
+      <td><%= court_calendar.expected_events_count %></td>
       <td><%= number_to_percentage(court_calendar.event_coverage_rate * 100, format: "%n%", :precision => 2) %></td>
       <td><%= court_calendar.parsed_event_count %></td>
       <td><%= number_to_percentage(court_calendar.event_parse_rate * 100, format: "%n%", :precision => 2) %></td>
