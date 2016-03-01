@@ -69,3 +69,4 @@
  + https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-(and-RSpec)
  + https://github.com/thoughtbot/factory_girl_rails
  + http://stackoverflow.com/q/7219732/670433
+ + http://stackoverflow.com/questions/5305638/stringcount-options

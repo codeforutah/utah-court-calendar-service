@@ -1,6 +1,6 @@
 class CourtCalendar < ActiveRecord::Base
   belongs_to :court, :inverse_of => :court_calendars
-  has_many :court_calendar_pages, :inverse_of => :court_calendar
+  has_many :pages, :inverse_of => :court_calendar, :class_name => CourtCalendarPage
   has_many :events, :inverse_of => :calendar, :class_name => CourtCalendarEvent
 
   serialize(:parsing_errors, Array)
@@ -50,5 +50,33 @@ class CourtCalendar < ActiveRecord::Base
 
   def events_count
     events.count
+  end
+
+  def expected_events_count
+    pages.any? ? pages.map{|page| page.expected_events_count}.compact.sum : 0
+  end
+
+  def event_coverage_rate
+    expected_events_count == 0 ? 1 : events_count.to_f / expected_events_count.to_f
+  end
+
+  def parsable_page_count
+    pages.any? ? pages.select{|page| page.parsable? }.count : 0
+  end
+
+  def unparsable_page_count
+    pages.any? ? pages.select{|page| !page.parsable? }.count : 0
+  end
+
+  def page_parse_rate
+    page_count == 0 ? 1 : parsable_page_count.to_f / page_count.to_f
+  end
+
+  def parsed_event_count
+    events.any? ? events.select{|event| !event.parsing_errors? }.count : 0
+  end
+
+  def event_parse_rate
+    events_count == 0 ? 1 : parsed_event_count.to_f / events_count.to_f
   end
 end

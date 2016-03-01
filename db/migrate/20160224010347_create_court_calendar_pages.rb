@@ -5,6 +5,7 @@ class CreateCourtCalendarPages < ActiveRecord::Migration
       t.integer :number, :null => false
       t.boolean :parsable
       t.text :parsing_errors
+      t.integer :expected_events_count
       t.timestamps null: false
     end
 

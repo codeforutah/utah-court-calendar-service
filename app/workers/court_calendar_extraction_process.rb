@@ -70,10 +70,16 @@ class CourtCalendarExtractionProcess
 
         begin
           page_content = page.text
-          court_calendar_page.update_attributes!({:parsable => true})
+          court_calendar_page.update_attributes!({
+            :parsable => true,
+            :expected_events_count => page_content.scan(EVENT_DIVIDER).count
+          })
         rescue => e # e.class == ArgumentError && e.message.include?("Unknown glyph width")
           puts "  + UNPARSABLE PAGE #{court_calendar_page.number} -- #{e.class} -- #{e.message}"
-          court_calendar_page.update_attributes!({:parsable => false, :parsing_errors => ["#{e.class} -- #{e.message}"]})
+          court_calendar_page.update_attributes!({
+            :parsable => false,
+            :parsing_errors => ["#{e.class} -- #{e.message}"]
+          })
           next
         end
 
