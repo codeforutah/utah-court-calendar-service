@@ -57,6 +57,18 @@ class CourtCalendar < ActiveRecord::Base
   end
 
   def event_coverage_rate
-    expected_events_count == 0 ? 1 : events_count.to_f / expected_events_count
+    expected_events_count == 0 ? 1 : events_count.to_f / expected_events_count.to_f
+  end
+
+  def parsable_page_count
+    pages.any? ? pages.select{|page| page.parsable? }.count : 0
+  end
+
+  def unparsable_page_count
+    pages.any? ? pages.select{|page| !page.parsable? }.count : 0
+  end
+
+  def page_parse_rate
+    page_count == 0 ? 1 : parsable_page_count.to_f / page_count.to_f
   end
 end

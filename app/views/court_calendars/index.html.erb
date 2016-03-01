@@ -4,11 +4,13 @@
   <table class="table">
     <tr>
       <th>Court</th>
-      <th>Upload Date</th>
+      <th>Upload date</th>
       <th>Pages</th>
+      <!--th>Unparsable pages</th-->
+      <th>Page parse rate</th>
       <th>Events</th>
-      <th>Expected Events</th>
-      <th>Event Coverage Rate</th>
+      <!--th>Expected events</th-->
+      <th>Event coverage rate</th>
     </tr>
 
     <% @court_calendars.each do |court_calendar| %>
@@ -16,8 +18,10 @@
       <td><%= link_to court_calendar.court_title, court_calendar.url %></td>
       <td><%= court_calendar.date %></td>
       <td><%= court_calendar.page_count %></td>
+      <!--td><%= court_calendar.unparsable_page_count %></td-->
+      <td><%= number_to_percentage(court_calendar.page_parse_rate * 100, format: "%n%", :precision => 2) %></td>
       <td><%= court_calendar.events_count %></td>
-      <td><%= court_calendar.expected_events_count %></td>
+      <!--td><%= court_calendar.expected_events_count %></td-->
       <td><%= number_to_percentage(court_calendar.event_coverage_rate * 100, format: "%n%", :precision => 2) %></td>
     </tr>
     <% end %>
